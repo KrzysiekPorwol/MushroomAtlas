@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class MenuLogic {
 
 
- private static void navigateMenu(Menu choice) {
+  private static void navigateMenu(Menu choice) {
 
     switch (choice) {
       case SEARCH_MUSHROOM -> System.out.println("Kiedys bedziesz mogl poszukac grzyba");
@@ -19,7 +19,7 @@ public class MenuLogic {
     }
   }
 
- private static Menu showMenu(Scanner input) {
+  private static Menu showMenu(Scanner input) {
 
     while (true) {
       printMenu();
@@ -38,7 +38,7 @@ public class MenuLogic {
     }
   }
 
- private static void printMenu() {
+  private static void printMenu() {
     for (Menu m : Menu.values()) {
       System.out.println(m.getDescription() + m.getNumber());
     }

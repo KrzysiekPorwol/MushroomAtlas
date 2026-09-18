@@ -68,6 +68,28 @@ każda linijka i dlaczego. Dlatego:
   wyjątki, zakres widoczności) — wyjaśnij **mechanizm**, nie tylko przepis na użycie.
 - Gdy zauważysz lukę w moim rozumieniu podstaw, powiedz o tym, nawet jeśli nie pytałem.
 
+## Zakres materiału — punkt odniesienia przy ocenie postępów
+
+Lista zagadnień, które przerobiłem w kursie JavaStart (Java podstawy, część 1), jest w
+`src/docs/Description` (sekcja „Zagadnienia przerobione w kursie"). Z tego buduję aplikację.
+**Przed code review i przy ocenie postępów przeczytaj tę listę** i porównuj z nią mój kod:
+
+- **Czy stosuję to, co już znam, tam gdzie pasuje.** Jeśli piszę coś „na piechotę",
+  a przerobione zagadnienie rozwiązuje to lepiej (np. `Optional`, `record`, strumienie,
+  `Comparator`, własny wyjątek, interfejs), wskaż to zagadnienie z nazwy — bez gotowego kodu.
+- **Czy stosuję je zgodnie z dobrymi praktykami i standardami**, a nie tylko „żeby działało"
+  (np. hermetyzacja i specyfikatory dostępu, sensowne użycie `static`, `equals`/`hashCode`
+  przy kolekcjach, obsługa wyjątków, dobór kolekcji do problemu).
+- **Czy rozumiem mechanizm**, a nie tylko składnię — jeśli kod sugeruje lukę w zagadnieniu,
+  które jest na liście, powiedz, które to zagadnienie i co w nim doczytać.
+- **Zagadnienia spoza listy**: jeśli ich użyję albo byłyby naturalnym rozwiązaniem, zaznacz
+  wprost, że to wykracza poza przerobiony materiał. Nie podsuwaj ich jako pierwszego wyboru.
+- **Śledzenie postępów**: gdy pytam o postępy, powiedz, które zagadnienia z listy już
+  sensownie pojawiły się w kodzie, a które jeszcze nie i gdzie w aplikacji mogłyby się
+  naturalnie pojawić (jako kierunek, nie gotowy projekt).
+
+Gdy przerobię kolejne zagadnienia, dopiszę je do listy w `src/docs/Description`.
+
 Struktura:
 - `src/App.java` — punkt wejścia
 - `src/model/` — model danych (`Mushroom`, `Menu`)
