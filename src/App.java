@@ -10,8 +10,7 @@ public class App {
     System.out.println("Witaj w aplikacji atlas grzybów!");
     System.out.println("");
 
-    MenuLogic.showMenu(input);
-
+    MenuLogic.navigateMenu(MenuLogic.showMenu(input));
 
 
   }

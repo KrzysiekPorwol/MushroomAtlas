@@ -1,2 +1,15 @@
-Aplikacja oferuje odpalenie menu, gdzie mozesz 1. poszukac konkretnego grzyba a w nim zaznaczyc ze zdobyty.
-2.
+Na start wystarczy kilka funkcji:
+
+użytkownik wpisuje nazwę grzyba → dostaje opis, jadalność, porę roku, typ lasu
+może wyświetlić listę wszystkich grzybów
+może filtrować (np. "pokaż tylko jadalne" albo "pokaż grzyby z lasu liściastego")
+może wyszukiwać po fragmencie nazwy
+
+A od strony kodu to ładnie ćwiczy rzeczy z kursu:
+
+Enum — jadalność (JADALNY, NIEJADALNY, TRUJĄCY), typ lasu, pora roku
+Klasa Grzyb z polami i metodami
+Kolekcje — lista grzybów, filtrowanie, wyszukiwanie
+Interfejs — np. Searchable albo Filterable
+Wyjątki — grzyb nie znaleziony, błędne dane wejściowe
+Optional — szukasz grzyba, może go nie być

@@ -3,21 +3,19 @@ package logic;
 import model.Menu;
 
 import java.util.InputMismatchException;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class MenuLogic {
 
 
-
   public static void navigateMenu(Menu choice) {
-    if (choice == Menu.SEARCH_MUSHROOM) {
-      System.out.println("Kiedys bedziesz mogl poszukac grzyba");
-    } else if (choice == Menu.ADD_MUSHROOM.getNumber()) {
-      System.out.println("Kiedys bedziesz mogl dodac grzyba!");
-    } else if (choice == Menu.REMOVE_MUSHROOM.getNumber()) {
-      System.out.println("Kiedys bedziesz mogl usunac grzyba!");
-    } else if (choice == Menu.EXIT.getNumber()) {
-      System.out.println("Do zobaczenia!");
+
+    switch (choice) {
+      case SEARCH_MUSHROOM -> System.out.println("Kiedys bedziesz mogl poszukac grzyba");
+      case SHOW_ALL_MUSHROOMS -> System.out.println("Kiedys pokaze ci all grzyby!");
+      case FILTER_MUSHROOMS -> System.out.println("Kiedys bedziesz mogl filtrowac grzyby");
+      case EXIT -> System.out.println("Do zobaczenia!");
     }
   }
 
@@ -28,22 +26,21 @@ public class MenuLogic {
       try {
         int choice = input.nextInt();
         input.nextLine();
-        Menu option = Menu.fromNumber(choice);
-        if (option != null) {
-          return option;
+        Optional<Menu> optionalMenu = Menu.fromNumber(choice);
+        if (optionalMenu.isPresent()) {
+          return optionalMenu.orElseThrow();
         }
-        System.out.println("Nie ma takiej opcji w menu, spróbuj jeszcze raz!");
+        System.out.println("\n Nie ma takiej opcji w menu, spróbuj jeszcze raz! \n");
       } catch (InputMismatchException e) {
         input.nextLine();
         System.out.println("\n Wprowadziłes niepoprawne dane, sprobuj jeszcze raz! \n");
       }
     }
-
   }
 
   public static void printMenu() {
     for (Menu m : Menu.values()) {
-      System.out.println(m.getDescription());
+      System.out.println(m.getDescription() + m.getNumber());
     }
   }
 
