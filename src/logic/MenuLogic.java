@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class MenuLogic {
-abstract
+
 
   static void navigateMenu(Menu choice) {
 
