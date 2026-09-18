@@ -13,3 +13,63 @@ Kolekcje — lista grzybów, filtrowanie, wyszukiwanie
 Interfejs — np. Searchable albo Filterable
 Wyjątki — grzyb nie znaleziony, błędne dane wejściowe
 Optional — szukasz grzyba, może go nie być
+
+Zagadnienia przerobione w kursie (JavaStart — Java podstawy, część 1)
+====================================================================
+
+Z tych zagadnień buduję aplikację. To jest mój zakres materiału: w kodzie stosuję to,
+co tu jest, a jeśli sięgam po coś spoza listy — robię to świadomie i najpierw to doczytuję.
+
+Podstawy i programowanie obiektowe:
+- Zmienne
+- Operacje na zmiennych
+- Klasy i obiekty
+- Agregacja i kompozycja
+- Metody i konstruktory
+- Przeciążanie metod i this
+- Pamięć maszyny wirtualnej
+- Specyfikatory dostępu
+- Instrukcje sterujące
+- Enkapsulacja / Hermetyzacja
+- Tablice jednowymiarowe
+- Tablice wielowymiarowe
+- Wprowadzanie danych
+- Pętle
+- Składowe statyczne
+- Algorytmika
+
+Programowanie obiektowe cd. i API Javy:
+- Debugowanie
+- Dziedziczenie
+- Konstrukcja super()
+- Polimorfizm
+- Metody klasy Object
+- Typ wyliczeniowy Enum
+- Klasa String
+- Wyjątki
+- Typy abstrakcyjne
+- Klasy wewnętrzne
+- Operacje na plikach
+- Rekurencja
+- Typy opakowujące
+- Typy generyczne
+- Operacje na tablicach
+- Comparable i Comparator
+
+Kolekcje i programowanie funkcyjne:
+- Listy
+- Zbiory
+- Mapy
+- Kolejki
+- Iteratory
+- Klasa Collections
+- Wyrażenia lambda
+- Referencje do metod
+- Strumienie
+- Przetwarzanie kolekcji
+- Daty i czas
+- Optional
+- Rekordy
+- Wyrażenia regularne
+- String Templates
+- Podsumowanie części 1
