@@ -1,10 +1,12 @@
 package model;
 
+import java.util.Optional;
+
 public enum Menu {
-  SEARCH_MUSHROOM(1, "Poszukaj konkretnego grzyba - wpisz 1"),
-  ADD_MUSHROOM(2, "Dodaj grzyba do kolekcji zdobytych grzybów - wpisz 2"),
-  REMOVE_MUSHROOM(3, "Usuń grzyba z kolekcji zdobytych grzybów - wpisz 3"),
-  EXIT(0, "Wyjdz z aplikacji - wpisz 0");
+  SEARCH_MUSHROOM(1, "Poszukaj konkretnego grzyba - wpisz "),
+  SHOW_ALL_MUSHROOMS(2, "Pokaż wszystkie grzyby alfabetycznie - wpisz "),
+  FILTER_MUSHROOMS(3, "Wyfiltruj konkretne grzyby - wpisz "),
+  EXIT(0, "Wyjdz z aplikacji - wpisz ");
 
   private final int number;
   private final String description;
@@ -14,7 +16,6 @@ public enum Menu {
     this.number = number;
   }
 
-
   public String getDescription() {
     return description;
   }
@@ -23,19 +24,13 @@ public enum Menu {
     return number;
   }
 
-  public static Menu fromNumber(int number) {
+  public static Optional<Menu> fromNumber(int number) {
     for (Menu m : values()) {
       if (number == m.getNumber()) {
-        return m;
+        return Optional.of(m);
       }
     }
-    return null;
+    return Optional.empty();
   }
 
-//  public static Menu printMenu() {
-//    for (Menu m : values()) {
-//     System.out.println(m.description);
-//    }
-//    return
-//  }
 }
