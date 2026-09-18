@@ -44,5 +44,13 @@ public class MenuLogic {
     }
   }
 
+  public static void runMenu(Scanner input) {
+
+    Menu choice;
+    do {
+      choice = MenuLogic.showMenu(input);
+      MenuLogic.navigateMenu(choice);
+    } while (choice != Menu.EXIT);
+  }
 
 }

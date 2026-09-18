@@ -1,5 +1,4 @@
 import logic.MenuLogic;
-
 import java.util.Scanner;
 
 public class App {
@@ -10,9 +9,7 @@ public class App {
     System.out.println("Witaj w aplikacji atlas grzybów!");
     System.out.println("");
 
-    MenuLogic.navigateMenu(MenuLogic.showMenu(input));
-
+    MenuLogic.runMenu(input);
 
   }
-
 }
