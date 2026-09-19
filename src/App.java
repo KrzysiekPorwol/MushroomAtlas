@@ -1,15 +1,24 @@
+import logic.MakeMushroom;
 import logic.MenuLogic;
+import model.MushroomList;
+
 import java.util.Scanner;
 
 public class App {
 
   static void main() {
 
-    Scanner input = new Scanner(System.in);
     System.out.println("Witaj w aplikacji atlas grzybów!");
     System.out.println("");
 
-    MenuLogic.runMenu(input);
+    MushroomList mushroomList = new MushroomList();
+    Scanner input = new Scanner(System.in);
 
+    MenuLogic menuLogic = new MenuLogic(mushroomList, input);
+
+    menuLogic.runMenu(input);
+
+
+    input.close();
   }
 }

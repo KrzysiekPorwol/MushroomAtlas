@@ -1,6 +1,7 @@
 package logic;
 
 import model.Menu;
+import model.MushroomList;
 
 import java.util.InputMismatchException;
 import java.util.Optional;
@@ -8,18 +9,27 @@ import java.util.Scanner;
 
 public class MenuLogic {
 
+  private MushroomList mushroomList;
+  private Scanner scanner;
 
-  private static void navigateMenu(Menu choice) {
+  public MenuLogic(MushroomList mushroomList, Scanner scanner) {
+    this.mushroomList = mushroomList;
+    this.scanner = scanner;
+  }
+
+  private void navigateMenu(Menu choice) {
+
 
     switch (choice) {
       case SEARCH_MUSHROOM -> System.out.println("Kiedys bedziesz mogl poszukac grzyba");
       case SHOW_ALL_MUSHROOMS -> System.out.println("Kiedys pokaze ci all grzyby!");
       case FILTER_MUSHROOMS -> System.out.println("Kiedys bedziesz mogl filtrowac grzyby");
+      case ADD_MUSHROOM -> MakeMushroom.makeMushroom(mushroomList, scanner);
       case EXIT -> System.out.println("Do zobaczenia!");
     }
   }
 
-  private static Menu showMenu(Scanner input) {
+  private Menu showMenu(Scanner input) {
 
     while (true) {
       printMenu();
@@ -38,14 +48,13 @@ public class MenuLogic {
     }
   }
 
-  private static void printMenu() {
+  private void printMenu() {
     for (Menu m : Menu.values()) {
       System.out.println(m.getDescription() + m.getNumber());
     }
   }
 
-  public static void runMenu(Scanner input) {
-
+  public void runMenu(Scanner input) {
     Menu choice;
     do {
       choice = showMenu(input);
