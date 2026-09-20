@@ -1,21 +1,21 @@
 package model;
 // hymenofor
 public enum Hymenophore {
-  POROID(1, "rurkowe"),
-  GILLED(2, "blaszkowe"),
-  TOOTHED(3, "kolczaste"),
-  GASTEROID(4, "bezkapeluszowe");
+  POROID(1, "hymenophor rurkowy"),
+  GILLED(2, "hymenophor blaszkowy"),
+  TOOTHED(3, "hymenophor kolczasty"),
+  GASTEROID(4, "brak hymenophoru");
 
   private final int number;
-  private final String hymenophore;
+  private final String description;
 
   Hymenophore(int number, String hymenophore) {
     this.number = number;
-    this.hymenophore = hymenophore;
+    this.description = hymenophore;
   }
 
-  public String getHymenophore() {
-    return hymenophore;
+  public String getDescription() {
+    return description;
   }
 
   public int getNumber() {

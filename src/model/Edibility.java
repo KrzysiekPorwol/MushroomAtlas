@@ -1,9 +1,9 @@
 package model;
 
 public enum Edibility {
-  EDIBLE(1, "Grzyb jadalny"),
-  INEDIBLE(2, "Grzyb niejadalny"),
-  POISONUS(3, "Grzyb trujący");
+  EDIBLE(1, "jadalny"),
+  INEDIBLE(2, "niejadalny"),
+  POISONUS(3, "trujący");
 
   private final int number;
   private final String description;

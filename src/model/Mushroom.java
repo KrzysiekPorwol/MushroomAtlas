@@ -59,4 +59,9 @@ public class Mushroom implements Comparable<Mushroom> {
   public int compareTo(Mushroom other) {
     return this.name.compareTo(other.name);
   }
+
+  @Override
+  public String toString() {
+    return name + " | " + description  + " | " + hymenophore.getDescription()  + " | " + edibility.getDescription();
+  }
 }

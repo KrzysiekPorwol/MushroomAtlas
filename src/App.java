@@ -1,5 +1,6 @@
 import logic.MakeMushroom;
 import logic.MenuLogic;
+import model.Mushroom;
 import model.MushroomList;
 
 import java.util.Scanner;
@@ -18,10 +19,13 @@ public class App {
 
 
     MakeMushroom makeMushroom = new MakeMushroom(mushroomList, input);
-    makeMushroom.makeMushroom();
     MenuLogic menuLogic = new MenuLogic(input, makeMushroom);
 
     menuLogic.runMenu();
+
+    for (Mushroom m : mushroomList.getAllMushrooms()) {
+      System.out.println(m.toString());
+    }
 
     input.close();
   }
