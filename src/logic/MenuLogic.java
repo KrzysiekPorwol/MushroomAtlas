@@ -9,12 +9,13 @@ import java.util.Scanner;
 
 public class MenuLogic {
 
-  private MushroomList mushroomList;
-  private Scanner scanner;
+  private final Scanner scanner;
+  private final MakeMushroom makeMushroom;
 
-  public MenuLogic(MushroomList mushroomList, Scanner scanner) {
-    this.mushroomList = mushroomList;
+  public MenuLogic(Scanner scanner, MakeMushroom makeMushroom) {
     this.scanner = scanner;
+    this.makeMushroom = makeMushroom;
+
   }
 
   private void navigateMenu(Menu choice) {
@@ -24,25 +25,25 @@ public class MenuLogic {
       case SEARCH_MUSHROOM -> System.out.println("Kiedys bedziesz mogl poszukac grzyba");
       case SHOW_ALL_MUSHROOMS -> System.out.println("Kiedys pokaze ci all grzyby!");
       case FILTER_MUSHROOMS -> System.out.println("Kiedys bedziesz mogl filtrowac grzyby");
-      case ADD_MUSHROOM -> MakeMushroom.makeMushroom(mushroomList, scanner);
+//      case ADD_MUSHROOM -> makeMushroom.makeMushroom();
       case EXIT -> System.out.println("Do zobaczenia!");
     }
   }
 
-  private Menu showMenu(Scanner input) {
+  private Menu showMenu() {
 
     while (true) {
       printMenu();
       try {
-        int choice = input.nextInt();
-        input.nextLine();
+        int choice = scanner.nextInt();
+        scanner.nextLine();
         Optional<Menu> optionalMenu = Menu.fromNumber(choice);
         if (optionalMenu.isPresent()) {
           return optionalMenu.orElseThrow();
         }
         System.out.println("\n Nie ma takiej opcji w menu, spróbuj jeszcze raz! \n");
       } catch (InputMismatchException e) {
-        input.nextLine();
+        scanner.nextLine();
         System.out.println("\n Wprowadziłes niepoprawne dane, sprobuj jeszcze raz! \n");
       }
     }
@@ -54,10 +55,10 @@ public class MenuLogic {
     }
   }
 
-  public void runMenu(Scanner input) {
+  public void runMenu() {
     Menu choice;
     do {
-      choice = showMenu(input);
+      choice = showMenu();
       navigateMenu(choice);
     } while (choice != Menu.EXIT);
   }
