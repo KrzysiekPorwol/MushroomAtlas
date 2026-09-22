@@ -57,15 +57,14 @@ public class MakeMushroom {
       System.out.println("jaki to rodzaj grzyba: wpisz 1, jeśli jadalny, 2 jeśli niejadalny, 3 jeśli trujący");
       try {
         int choice = scanner.nextInt();
+        scanner.nextLine();
+
         edibility = Edibility.fromNumber(choice);
 
         if (edibility.isEmpty()) {
-          scanner.nextLine();
           System.out.println("\n Wprowadziłeś niepoprawna liczbę, spróbuj jeszcze raz! \n");
-          continue;
         }
 
-        scanner.nextLine();
       } catch (InputMismatchException e) {
         scanner.nextLine();
         System.out.println("\n Wprowadziłeś niepoprawne dane, spróbuj jeszcze raz! \n");
@@ -76,27 +75,26 @@ public class MakeMushroom {
   }
 
   private Hymenophore getHymenophore() {
-    boolean condition = true;
-    Hymenophore hymenophore = Hymenophore.POROID;
+
+    Optional<Hymenophore> hymenophore;
+
     do {
       System.out.println("jaki to rodzaj hymenoforu: wpisz 1, jeśli rurkowy, 2 jeśli blaszkowy, 3 jeśli kolczasty i 4 jeśli bez kapeluszowy");
       try {
         int choice = scanner.nextInt();
-        for (Hymenophore h : Hymenophore.values()) {
-          if (choice == h.getNumber()) {
-            condition = false;
-            hymenophore = h;
-          }
-        }
-        if (choice != 1 && choice != 2 && choice != 3 && choice != 4) {
+        scanner.nextLine();
+        hymenophore = Hymenophore.fromNumber(choice);
+
+        if (hymenophore.isEmpty()) {
           System.out.println("\n Wprowadziłeś niepoprawna liczbę, spróbuj jeszcze raz! \n");
         }
-        scanner.nextLine();
+
       } catch (InputMismatchException e) {
         scanner.nextLine();
         System.out.println("\n Wprowadziłeś niepoprawne dane, spróbuj jeszcze raz! \n");
+        hymenophore = Optional.empty();
       }
-    } while (condition);
-    return hymenophore;
+    } while (hymenophore.isEmpty());
+    return hymenophore.get();
   }
 }

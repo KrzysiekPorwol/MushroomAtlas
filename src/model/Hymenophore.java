@@ -1,4 +1,7 @@
 package model;
+
+import java.util.Optional;
+
 // hymenofor
 public enum Hymenophore {
   POROID(1, "hymenophor rurkowy"),
@@ -20,5 +23,14 @@ public enum Hymenophore {
 
   public int getNumber() {
     return number;
+  }
+
+  public static Optional<Hymenophore> fromNumber(int number) {
+    for (Hymenophore h : values()) {
+      if (number == h.getNumber()) {
+        return Optional.of(h);
+      }
+    }
+    return Optional.empty();
   }
 }
