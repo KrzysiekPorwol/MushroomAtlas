@@ -1,6 +1,5 @@
 package logic;
 
-import exception.IncorrectNameException;
 import model.*;
 
 import java.util.*;
@@ -17,34 +16,37 @@ public class MakeMushroom {
 
 
   public void makeMushroom() {
-    boolean condition = true;
+
+    String name = readUserText("Podaj nazwę grzyba: ");
+
+    String description = readUserText("Podaj opis grzyba: ");
+
+    Edibility edibility = getEdibility();
+
+    Hymenophore hymenophore = getHymenophore();
+
+    Mushroom mushroom = new Mushroom(name, description, edibility, hymenophore);
+    mushroomList.addMushroom(mushroom);
+    System.out.println("Udało się dodać grzyba " + name + " do atlasu!");
+
+  }
+
+  private String readUserText(String text) {
+    boolean textIsIncorrect = true;
+    String userText;
     do {
-      String name = getName();
-      String description = getDescription();
-      Edibility edibility = getEdibility();
-      Hymenophore hymenophore = getHymenophore();
-      try {
-        Mushroom mushroom = new Mushroom(name, description, edibility, hymenophore);
-        mushroomList.addMushroom(mushroom);
-        condition = false;
-        System.out.println("Udało się dodać grzyba " + name + " do atlasu!");
-      } catch (IncorrectNameException | NullPointerException e) {
-        System.out.println(e.getMessage());
+      System.out.println(text);
+      userText = scanner.nextLine().trim();
+      if (userText.isBlank()) {
+        System.out.println("Wprowadzony tekst nie może być pusty");
+        continue;
+      } else if (userText.length() < Mushroom.MIN_LENGTH) {
+        System.out.println("Wprowadzony tekst nie może być krótszy niż " + Mushroom.MIN_LENGTH + " znaki");
+        continue;
       }
-
-    } while (condition);
-  }
-
-  private String getName() {
-    System.out.println("Podaj nazwę grzyba: ");
-    String name = scanner.nextLine();
-    return name;
-  }
-
-  private String getDescription() {
-    System.out.println("Podaj opis grzyba: ");
-    String description = scanner.nextLine();
-    return description;
+      textIsIncorrect = false;
+    } while (textIsIncorrect);
+    return userText;
   }
 
   private Edibility getEdibility() {

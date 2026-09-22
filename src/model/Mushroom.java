@@ -1,30 +1,34 @@
 package model;
 
-import exception.IncorrectNameException;
+import exception.InvalidMushroomDataException;
 
 import java.util.Objects;
 
 public class Mushroom implements Comparable<Mushroom> {
+  public static final int MIN_LENGTH = 3;
   private final String name;
   private final String description;
   private final Edibility edibility;
   private final Hymenophore hymenophore;
 
   public Mushroom(String name, String description, Edibility edibility, Hymenophore hymenophore) {
-    if (name == null) {
-      throw new NullPointerException("Nazwa nie może być nullem");
-    } else if (edibility == null) {
-      throw new NullPointerException("Jadalność nie może być nullem");
-    } else if (hymenophore == null) {
-      throw new NullPointerException("Hymenophore nie może być nullem");
+
+    String trimmedName = Objects.requireNonNull(name, "Nazwa nie może być nullem").trim();
+    String trimmedDescription = Objects.requireNonNull(description, "Opis nie może być nullem").trim();
+    Edibility notNullEdibility = Objects.requireNonNull(edibility, "Jadalność nie może być nullem");
+    Hymenophore notNullHymenophore = Objects.requireNonNull(hymenophore, "Hymenophore nie może być nullem");
+
+    if (trimmedName.length() < MIN_LENGTH) {
+      throw new InvalidMushroomDataException("Podana nazwa grzyba jest zbyt krótka");
     }
-    if (name.isBlank()) {
-      throw new IncorrectNameException("Podana nazwa grzyba jest niepoprawna");
+    if (trimmedDescription.length() < MIN_LENGTH) {
+      throw new InvalidMushroomDataException("Podany opis grzyba jest zbyt krótki");
     }
-    this.name = name.trim().toLowerCase();
-    this.description = description;
-    this.edibility = edibility;
-    this.hymenophore = hymenophore;
+
+    this.edibility = notNullEdibility;
+    this.hymenophore = notNullHymenophore;
+    this.name = trimmedName;
+    this.description = trimmedDescription;
   }
 
   public String getName() {
@@ -42,6 +46,8 @@ public class Mushroom implements Comparable<Mushroom> {
   public Hymenophore getHymenophore() {
     return hymenophore;
   }
+
+
 
   @Override
   public boolean equals(Object o) {
