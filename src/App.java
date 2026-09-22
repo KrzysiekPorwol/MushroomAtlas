@@ -19,13 +19,9 @@ public class App {
 
 
     MakeMushroom makeMushroom = new MakeMushroom(mushroomList, input);
-    MenuLogic menuLogic = new MenuLogic(input, makeMushroom);
+    MenuLogic menuLogic = new MenuLogic(input, makeMushroom, mushroomList);
 
     menuLogic.runMenu();
-
-    for (Mushroom m : mushroomList.getAllMushrooms()) {
-      System.out.println(m.toString());
-    }
 
     input.close();
   }

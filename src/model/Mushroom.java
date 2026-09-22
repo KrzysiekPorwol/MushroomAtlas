@@ -10,7 +10,7 @@ public class Mushroom implements Comparable<Mushroom> {
   private final Edibility edibility;
   private final Hymenophore hymenophore;
 
-  public Mushroom(String name, String description, Edibility edibility, Hymenophore hymenophore) throws IncorrectNameException {
+  public Mushroom(String name, String description, Edibility edibility, Hymenophore hymenophore) {
     if (name == null) {
       throw new NullPointerException("Nazwa nie może być nullem");
     } else if (edibility == null) {
