@@ -50,28 +50,29 @@ public class MakeMushroom {
   }
 
   private Edibility getEdibility() {
-    boolean condition = true;
-    Edibility edibility = Edibility.EDIBLE;
+
+    Optional<Edibility> edibility;
+
     do {
       System.out.println("jaki to rodzaj grzyba: wpisz 1, jeśli jadalny, 2 jeśli niejadalny, 3 jeśli trujący");
       try {
         int choice = scanner.nextInt();
-        for (Edibility e : Edibility.values()) {
-          if (choice == e.getNumber()) {
-            condition = false;
-            edibility = e;
-          }
-        }
-        if (choice != Edibility.EDIBLE.getNumber() && choice != 2 && choice != 3) {
+        edibility = Edibility.fromNumber(choice);
+
+        if (edibility.isEmpty()) {
+          scanner.nextLine();
           System.out.println("\n Wprowadziłeś niepoprawna liczbę, spróbuj jeszcze raz! \n");
+          continue;
         }
+
         scanner.nextLine();
       } catch (InputMismatchException e) {
         scanner.nextLine();
         System.out.println("\n Wprowadziłeś niepoprawne dane, spróbuj jeszcze raz! \n");
+        edibility = Optional.empty();
       }
-    } while (condition);
-    return edibility;
+    } while (edibility.isEmpty());
+    return edibility.get();
   }
 
   private Hymenophore getHymenophore() {

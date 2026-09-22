@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Optional;
+
 public enum Edibility {
   EDIBLE(1, "jadalny"),
   INEDIBLE(2, "niejadalny"),
@@ -19,5 +21,14 @@ public enum Edibility {
 
   public int getNumber() {
     return number;
+  }
+
+  public static Optional<Edibility> fromNumber(int number) {
+    for (Edibility e : values()) {
+      if (number == e.getNumber()) {
+        return Optional.of(e);
+      }
+    }
+    return Optional.empty();
   }
 }
