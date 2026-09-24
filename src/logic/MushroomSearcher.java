@@ -5,7 +5,10 @@ import model.Hymenophore;
 import model.Mushroom;
 import model.MushroomList;
 
-import java.util.*;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Set;
 
 public class MushroomSearcher {
 
@@ -22,7 +25,7 @@ public class MushroomSearcher {
     do {
       System.out.println("Podaj nazwę grzyba którego szukasz: ");
       String mushroomName = scanner.nextLine().trim();
-      if (mushroomName.length() < 3) {
+      if (mushroomName.length() < Mushroom.MIN_LENGTH) {
         System.out.println("\n\nNazwa musi mieć conajmniej 3 znaki\n\n");
       } else {
         mushroomList.findOneMushroom(mushroomName).ifPresentOrElse(

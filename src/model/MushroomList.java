@@ -8,7 +8,11 @@ import java.util.stream.Collectors;
 
 public class MushroomList {
 
-  private final Set<Mushroom> mushrooms = new TreeSet<>();
+  private final Set<Mushroom> mushrooms;
+
+  public MushroomList(Set<Mushroom> mushrooms) {
+    this.mushrooms = new TreeSet<>(mushrooms);
+  }
 
   public void addMushroom(Mushroom mushroom) {
     mushrooms.add(mushroom);

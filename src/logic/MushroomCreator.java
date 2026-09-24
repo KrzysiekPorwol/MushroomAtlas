@@ -1,8 +1,13 @@
 package logic;
 
-import model.*;
+import model.Edibility;
+import model.Hymenophore;
+import model.Mushroom;
+import model.MushroomList;
 
-import java.util.*;
+import java.util.InputMismatchException;
+import java.util.Optional;
+import java.util.Scanner;
 
 public class MushroomCreator {
 

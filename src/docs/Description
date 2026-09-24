@@ -74,8 +74,8 @@ Kolekcje i programowanie funkcyjne:
 - String Templates
 - Podsumowanie części 1
 
-Stan wykorzystania zagadnień w kodzie (2026-09-24)
-====================================================
+Stan wykorzystania zagadnień w kodzie (2026-09-24, branch feature/save-and-read-files)
+======================================================================================
 
 Legenda: [x] użyte sensownie, [~] użyte częściowo / pośrednio, [ ] jeszcze nieużyte.
 
@@ -83,71 +83,87 @@ Podstawy i programowanie obiektowe:
 - [x] Zmienne
 - [x] Operacje na zmiennych
 - [x] Klasy i obiekty
-- [x] Agregacja i kompozycja — MenuLogic składa MakeMushroom/SearchMushroom; Mushroom składa Edibility/Hymenophore
+- [x] Agregacja i kompozycja — MenuLogic składa MushroomCreator/MushroomSearcher; Mushroom składa Edibility/Hymenophore;
+      MushroomList opakowuje Set<Mushroom>
+- [x] Metody i konstruktory — konstruktory z walidacją (Mushroom), wstrzykiwanie zależności przez konstruktor (App → logika)
 - [~] Przeciążanie metod i this — this jest (konstruktory), przeciążania metod (overloading) nie widać w kodzie
 - [ ] Pamięć maszyny wirtualnej — zagadnienie teoretyczne, nie ma go czego szukać w kodzie
-- [x] Specyfikatory dostępu
-- [x] Instrukcje sterujące — if, switch (MenuLogic.navigateMenu), while, do-while
-- [x] Enkapsulacja / Hermetyzacja
-- [ ] Tablice jednowymiarowe — w projekcie wszędzie kolekcje, tablicy nie ma
+      (pośrednio: kopia obronna new TreeSet<>(mushrooms) w MushroomList to świadoma praca z referencjami)
+- [x] Specyfikatory dostępu — uwaga: pola fileName/file w FileCreator nie mają specyfikatora (package-private)
+- [x] Instrukcje sterujące — if/else if, switch z -> (MenuLogic.navigateMenu, MushroomSearcher.filtrAllMushrooms),
+      while, do-while, continue
+- [x] Enkapsulacja / Hermetyzacja — pola private final, kopia obronna w getAllMushrooms()
+- [ ] Tablice jednowymiarowe — pośrednio tylko values() enumów (zwraca tablicę), własnej tablicy brak
 - [ ] Tablice wielowymiarowe
-- [x] Wprowadzanie danych — Scanner
-- [x] Pętle — for, for-each, while, do-while
-- [x] Składowe statyczne — Mushroom.MIN_LENGTH, static void main
-- [~] Algorytmika — walidacje i pętle sterujące owszem, nic bardziej złożonego jeszcze
+- [x] Wprowadzanie danych — Scanner (nextInt + nextLine, obsługa błędnego wejścia)
+- [x] Pętle — for, for-each, while(true), do-while
+- [x] Składowe statyczne — Mushroom.MIN_LENGTH, serialVersionUID, statyczne fabryki fromNumber w enumach, static main
+- [~] Algorytmika — walidacje, wyszukiwanie liniowe w fromNumber; nic bardziej złożonego jeszcze
 
 Programowanie obiektowe cd. i API Javy:
 - [ ] Debugowanie — nie do stwierdzenia z samego kodu
-- [x] Dziedziczenie — InvalidMushroomDataException extends RuntimeException
-- [x] Konstrukcja super() — w InvalidMushroomDataException
-- [~] Polimorfizm — przez nadpisane metody (equals/hashCode/toString/compareTo), bez własnej hierarchii klas z różnym zachowaniem
-- [x] Metody klasy Object — equals, hashCode, toString nadpisane w Mushroom
-- [x] Typ wyliczeniowy Enum — Edibility, Hymenophore, Menu
-- [x] Klasa String — trim, length, equals, compareTo
-- [x] Wyjątki — własny wyjątek + obsługa InputMismatchException
-- [ ] Typy abstrakcyjne — brak klasy/metody abstract w projekcie
+- [x] Dziedziczenie — InvalidMushroomDataException extends RuntimeException,
+      InvalidFileReadException / InvalidFileSaveException extends Exception
+- [x] Konstrukcja super() — we wszystkich trzech własnych wyjątkach
+- [~] Polimorfizm — przez nadpisane metody (equals/hashCode/toString/compareTo) i hierarchię wyjątków w catch,
+      bez własnej hierarchii klas z różnym zachowaniem
+- [x] Metody klasy Object — equals (z getClass()), hashCode, toString nadpisane w Mushroom
+- [x] Typ wyliczeniowy Enum — Edibility, Hymenophore, Menu (pola, konstruktor, metoda statyczna, values())
+- [x] Klasa String — trim, isBlank, length, equals, compareTo
+- [x] Wyjątki — własne unchecked (InvalidMushroomDataException) i checked (InvalidFile*Exception),
+      throws w sygnaturze, try-with-resources, multi-catch (IOException | ClassNotFoundException),
+      opakowywanie wyjątku niskopoziomowego we własny, obsługa InputMismatchException
+- [ ] Typy abstrakcyjne — brak własnej klasy abstrakcyjnej / własnego interfejsu
+      (implementujesz cudze: Comparable, Serializable)
 - [ ] Klasy wewnętrzne
-- [ ] Operacje na plikach — dane trzymane tylko w pamięci
+- [x] Operacje na plikach — FileCreator: File.exists(), FileOutputStream/FileInputStream,
+      ObjectOutputStream/ObjectInputStream (serializacja), Mushroom implements Serializable + @Serial serialVersionUID
 - [ ] Rekurencja
 - [ ] Typy opakowujące — jawnie nieużyte (autoboxing w kolekcjach się nie liczy)
-- [~] Typy generyczne — korzystasz z generyków biblioteki (Set<T>, Optional<T>), ale bez własnej klasy/metody generycznej — patrz TODO niżej
+- [~] Typy generyczne — generyki biblioteki (Set<T>, List<T>, Optional<T>, Comparable<T>) i rzutowanie
+      (Set<Mushroom>) z @SuppressWarnings("unchecked"); bez własnej klasy/metody generycznej — patrz TODO niżej
 - [ ] Operacje na tablicach
-- [~] Comparable i Comparator — Comparable jest (Mushroom), Comparator jeszcze nie
+- [~] Comparable i Comparator — Comparable jest (Mushroom, wykorzystywany przez TreeSet), Comparator jeszcze nie
 
 Kolekcje i programowanie funkcyjne:
-- [ ] Listy — w projekcie jest tylko Set, List się jeszcze nie pojawił
-- [x] Zbiory — Set, TreeSet w MushroomList
+- [x] Listy — List<Mushroom> jako wynik findByEdibility/findByHymenophore
+- [x] Zbiory — Set, TreeSet w MushroomList (sortowanie przez Comparable, unikalność)
 - [ ] Mapy
 - [ ] Kolejki
 - [~] Iteratory — for-each korzysta z Iterable, jawnego Iteratora nie ma
 - [ ] Klasa Collections — użyty jest Collectors (java.util.stream), to inna klasa niż java.util.Collections
-- [x] Wyrażenia lambda — filter/ifPresentOrElse w SearchMushroom, MushroomList
+- [x] Wyrażenia lambda — filter w MushroomList, ifPresentOrElse w MushroomSearcher
 - [ ] Referencje do metod — wszędzie lambdy, referencji typu Mushroom::getName nie ma
-- [x] Strumienie — stream/filter/collect w MushroomList
-- [~] Przetwarzanie kolekcji — częściowo przez strumienie, brak np. sortowania przez Comparator czy grupowania
-- [ ] Daty i czas
-- [x] Optional — szeroko używany (MushroomList, MenuLogic, MakeMushroom)
+- [x] Strumienie — stream/filter/collect/findFirst w MushroomList
+- [~] Przetwarzanie kolekcji — filtrowanie przez strumienie; brak sortowania przez Comparator czy grupowania
+- [x] Daty i czas — LocalDateTime.now() + DateTimeFormatter.ofPattern w MenuLogic.showMenu
+- [x] Optional — Menu/Edibility/Hymenophore.fromNumber, findOneMushroom; isEmpty, orElseThrow, ifPresentOrElse
 - [ ] Rekordy — Mushroom/Edibility/Hymenophore to zwykłe klasy/enumy, nie rekord
 - [ ] Wyrażenia regularne
 - [ ] String Templates — konkatenacja przez +, bez STR."..."
 
+Użyte w kodzie, a spoza listy (warto doczytać, skoro już są):
+- Adnotacje — @Override, @Serial, @SuppressWarnings("unchecked"): co robią i kiedy kompilator je sprawdza
+- var (local variable type inference) — w try-with-resources w FileCreator
+- Serializacja obiektów (Serializable, serialVersionUID) — jeśli nie była częścią lekcji o plikach
+
 Gdzie te braki mogłyby się naturalnie pojawić (kierunek, nie gotowe rozwiązanie):
-- FILTER_MUSHROOMS w Menu jest już zdefiniowany, ale w MenuLogic.navigateMenu tylko wypisuje
-  placeholder — naturalne miejsce na Listy, Comparator (sortowanie wyników filtra) i ewentualnie
-  Mapy (np. grupowanie po Edibility/Hymenophore przez Collectors.groupingBy).
-- Referencje do metod — MushroomList i SearchMushroom używają lambd, część z nich (np. proste
-  wywołania gettera) kwalifikuje się do zamiany na referencję do metody.
-- Typy generyczne (własne) — masz to opisane w TODO niżej (ujednolicenie getEdibility/getHymenophore).
-- Rekordy — Edibility/Hymenophore to enumy z polami, ale np. prosty DTO do wyników filtrowania
-  albo statystyk mógłby być kandydatem na record, gdy dojdzie taka funkcjonalność.
+- MushroomSearcher.filtrAllMushrooms — siedem niemal identycznych gałęzi case; naturalne miejsce na
+  wydzielenie metody, wykorzystanie fromNumber zamiast ręcznego mapowania cyfry na stałą enuma,
+  a dalej Comparator (sortowanie wyników) i Mapy (np. grupowanie po Edibility/Hymenophore).
+- Referencje do metod — MushroomList i MushroomSearcher używają lambd, część z nich kwalifikuje się
+  do zamiany na referencję do metody (np. wypisywanie elementów).
+- Typy generyczne (własne) + interfejs — opisane w TODO niżej.
+- Rekordy — np. prosty DTO do wyników filtrowania albo statystyk, gdy dojdzie taka funkcjonalność.
+- Wyrażenia regularne — walidacja nazwy grzyba (np. tylko litery i spacje).
 
 TODO na przyszłość
 ===================
 
-- Ujednolicić getEdibility() i getHymenophore() w MakeMushroom — obie metody są
+- Ujednolicić getEdibility() i getHymenophore() w MushroomCreator — obie metody są
   strukturalnie identyczne (różnią się typem, tekstem pytania i wywoływaną metodą
   fromNumber). Do zrobienia: wspólny interfejs (np. z metodą getNumber()) implementowany
   przez Edibility i Hymenophore, potem generyczna metoda z bounded type parameter
   (<T extends ...>) zastępująca obie. Dotyka: nowy interfejs + zmiana w obu enumach +
-  zmiana w MakeMushroom. Wymaga: interfejsy, typy generyczne (oba zagadnienia już
+  zmiana w MushroomCreator. Wymaga: interfejsy, typy generyczne (oba zagadnienia już
   przerobione, ale jeszcze nie połączone w kodzie).
