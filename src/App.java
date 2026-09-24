@@ -1,5 +1,6 @@
 import logic.MakeMushroom;
 import logic.MenuLogic;
+import logic.SearchMushroom;
 import model.Mushroom;
 import model.MushroomList;
 
@@ -15,14 +16,16 @@ public class App {
     System.out.println("");
 
     MushroomList mushroomList = new MushroomList();
-    Scanner input = new Scanner(System.in);
+    Scanner scanner = new Scanner(System.in);
 
 
-    MakeMushroom makeMushroom = new MakeMushroom(mushroomList, input);
-    MenuLogic menuLogic = new MenuLogic(input, makeMushroom, mushroomList);
+    MakeMushroom makeMushroom = new MakeMushroom(mushroomList, scanner);
+    SearchMushroom searchMushroom = new SearchMushroom(scanner, mushroomList);
+    MenuLogic menuLogic = new MenuLogic(scanner, makeMushroom, searchMushroom);
+
 
     menuLogic.runMenu();
 
-    input.close();
+    scanner.close();
   }
 }
