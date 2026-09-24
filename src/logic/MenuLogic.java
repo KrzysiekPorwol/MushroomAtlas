@@ -26,7 +26,7 @@ public class MenuLogic {
     switch (choice) {
       case SEARCH_MUSHROOM -> mushroomSearcher.printOneMushroom();
       case SHOW_ALL_MUSHROOMS -> mushroomSearcher.printAllMushrooms();
-      case FILTER_MUSHROOMS -> System.out.println("Kiedys bedziesz mogl filtrowac grzyby");
+      case FILTER_MUSHROOMS -> mushroomSearcher.filtrAllMushrooms();
       case ADD_MUSHROOM -> mushroomCreator.makeMushroom();
       case EXIT -> System.out.println("Do zobaczenia!");
     }
