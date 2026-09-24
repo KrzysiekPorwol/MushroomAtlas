@@ -11,20 +11,20 @@ public class MenuLogic {
 
   private final Scanner scanner;
   private final MakeMushroom makeMushroom;
-  private final MushroomList mushroomList;
+  private final SearchMushroom searchMushroom;
 
-  public MenuLogic(Scanner scanner, MakeMushroom makeMushroom, MushroomList mushroomList) {
+  public MenuLogic(Scanner scanner, MakeMushroom makeMushroom, SearchMushroom searchMushroom) {
     this.scanner = scanner;
     this.makeMushroom = makeMushroom;
-    this.mushroomList = mushroomList;
+    this.searchMushroom = searchMushroom;
   }
 
   private void navigateMenu(Menu choice) {
 
 
     switch (choice) {
-      case SEARCH_MUSHROOM -> System.out.println("Kiedys bedziesz mogl poszukac grzyba");
-      case SHOW_ALL_MUSHROOMS -> ShowAllMushroom.showAllMushrooms(mushroomList);
+      case SEARCH_MUSHROOM -> searchMushroom.showOneMushroom();
+      case SHOW_ALL_MUSHROOMS -> searchMushroom.showAllMushrooms();
       case FILTER_MUSHROOMS -> System.out.println("Kiedys bedziesz mogl filtrowac grzyby");
       case ADD_MUSHROOM -> makeMushroom.makeMushroom();
       case EXIT -> System.out.println("Do zobaczenia!");
