@@ -1,18 +1,36 @@
 package model;
+
+import java.util.Optional;
+
 // hymenofor
 public enum Hymenophore {
-  POROID("rurkowe"),
-  GILLED("blaszkowe"),
-  TOOTHED("kolczaste"),
-  GASTEROID("bezkapeluszowe");
+  POROID(1, "hymenophor rurkowy"),
+  GILLED(2, "hymenophor blaszkowy"),
+  TOOTHED(3, "hymenophor kolczasty"),
+  GASTEROID(4, "brak hymenophoru");
 
-  private final String hymenophore;
+  private final int number;
+  private final String description;
 
-  Hymenophore(String hymenophore) {
-    this.hymenophore = hymenophore;
+  Hymenophore(int number, String hymenophore) {
+    this.number = number;
+    this.description = hymenophore;
   }
 
-  public String getHymenophore() {
-    return hymenophore;
+  public String getDescription() {
+    return description;
+  }
+
+  public int getNumber() {
+    return number;
+  }
+
+  public static Optional<Hymenophore> fromNumber(int number) {
+    for (Hymenophore h : values()) {
+      if (number == h.getNumber()) {
+        return Optional.of(h);
+      }
+    }
+    return Optional.empty();
   }
 }
