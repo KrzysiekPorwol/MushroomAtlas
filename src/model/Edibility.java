@@ -1,13 +1,17 @@
 package model;
 
-public enum Edibility {
-  EDIBLE("Grzyb jadalny"),
-  INEDIBLE("Grzyb niejadalny"),
-  POISONUS("Grzyb trujący");
+import java.util.Optional;
 
+public enum Edibility {
+  EDIBLE(1, "jadalny"),
+  INEDIBLE(2, "niejadalny"),
+  POISONUS(3, "trujący");
+
+  private final int number;
   private final String description;
 
-  Edibility(String description) {
+  Edibility(int number, String description) {
+    this.number = number;
     this.description = description;
   }
 
@@ -15,5 +19,16 @@ public enum Edibility {
     return description;
   }
 
+  public int getNumber() {
+    return number;
+  }
 
+  public static Optional<Edibility> fromNumber(int number) {
+    for (Edibility e : values()) {
+      if (number == e.getNumber()) {
+        return Optional.of(e);
+      }
+    }
+    return Optional.empty();
+  }
 }
