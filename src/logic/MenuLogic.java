@@ -11,23 +11,23 @@ import java.util.Scanner;
 public class MenuLogic {
 
   private final Scanner scanner;
-  private final MakeMushroom makeMushroom;
-  private final SearchMushroom searchMushroom;
+  private final MushroomCreator mushroomCreator;
+  private final MushroomSearcher mushroomSearcher;
 
-  public MenuLogic(Scanner scanner, MakeMushroom makeMushroom, SearchMushroom searchMushroom) {
+  public MenuLogic(Scanner scanner, MushroomCreator mushroomCreator, MushroomSearcher mushroomSearcher) {
     this.scanner = scanner;
-    this.makeMushroom = makeMushroom;
-    this.searchMushroom = searchMushroom;
+    this.mushroomCreator = mushroomCreator;
+    this.mushroomSearcher = mushroomSearcher;
   }
 
   private void navigateMenu(Menu choice) {
 
 
     switch (choice) {
-      case SEARCH_MUSHROOM -> searchMushroom.printOneMushroom();
-      case SHOW_ALL_MUSHROOMS -> searchMushroom.printAllMushrooms();
+      case SEARCH_MUSHROOM -> mushroomSearcher.printOneMushroom();
+      case SHOW_ALL_MUSHROOMS -> mushroomSearcher.printAllMushrooms();
       case FILTER_MUSHROOMS -> System.out.println("Kiedys bedziesz mogl filtrowac grzyby");
-      case ADD_MUSHROOM -> makeMushroom.makeMushroom();
+      case ADD_MUSHROOM -> mushroomCreator.makeMushroom();
       case EXIT -> System.out.println("Do zobaczenia!");
     }
   }

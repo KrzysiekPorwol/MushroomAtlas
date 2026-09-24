@@ -6,12 +6,12 @@ import model.MushroomList;
 import java.util.Scanner;
 import java.util.Set;
 
-public class SearchMushroom {
+public class MushroomSearcher {
 
   private final Scanner scanner;
   private final MushroomList mushroomList;
 
-  public SearchMushroom(Scanner scanner, MushroomList mushroomList) {
+  public MushroomSearcher(Scanner scanner, MushroomList mushroomList) {
     this.scanner = scanner;
     this.mushroomList = mushroomList;
   }

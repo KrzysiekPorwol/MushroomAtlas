@@ -4,12 +4,12 @@ import model.*;
 
 import java.util.*;
 
-public class MakeMushroom {
+public class MushroomCreator {
 
   private final MushroomList mushroomList;
   private final Scanner scanner;
 
-  public MakeMushroom(MushroomList mushroomList, Scanner scanner) {
+  public MushroomCreator(MushroomList mushroomList, Scanner scanner) {
     this.mushroomList = mushroomList;
     this.scanner = scanner;
   }
