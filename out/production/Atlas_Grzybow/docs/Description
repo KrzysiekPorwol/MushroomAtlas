@@ -73,3 +73,14 @@ Kolekcje i programowanie funkcyjne:
 - Wyrażenia regularne
 - String Templates
 - Podsumowanie części 1
+
+TODO na przyszłość
+===================
+
+- Ujednolicić getEdibility() i getHymenophore() w MakeMushroom — obie metody są
+  strukturalnie identyczne (różnią się typem, tekstem pytania i wywoływaną metodą
+  fromNumber). Do zrobienia: wspólny interfejs (np. z metodą getNumber()) implementowany
+  przez Edibility i Hymenophore, potem generyczna metoda z bounded type parameter
+  (<T extends ...>) zastępująca obie. Dotyka: nowy interfejs + zmiana w obu enumach +
+  zmiana w MakeMushroom. Wymaga: interfejsy, typy generyczne (oba zagadnienia już
+  przerobione, ale jeszcze nie połączone w kodzie).
