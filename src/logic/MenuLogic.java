@@ -2,6 +2,8 @@ package logic;
 
 import model.Menu;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Optional;
 import java.util.Scanner;
@@ -31,7 +33,8 @@ public class MenuLogic {
   }
 
   private Menu showMenu() {
-
+    String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"));
+    System.out.println(dateTime);
     while (true) {
       printMenu();
       try {
