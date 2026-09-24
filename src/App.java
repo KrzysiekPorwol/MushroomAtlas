@@ -1,7 +1,6 @@
-import logic.MakeMushroom;
+import logic.MushroomCreator;
 import logic.MenuLogic;
-import logic.SearchMushroom;
-import model.Mushroom;
+import logic.MushroomSearcher;
 import model.MushroomList;
 
 import java.util.Scanner;
@@ -19,9 +18,9 @@ public class App {
     Scanner scanner = new Scanner(System.in);
 
 
-    MakeMushroom makeMushroom = new MakeMushroom(mushroomList, scanner);
-    SearchMushroom searchMushroom = new SearchMushroom(scanner, mushroomList);
-    MenuLogic menuLogic = new MenuLogic(scanner, makeMushroom, searchMushroom);
+    MushroomCreator mushroomCreator = new MushroomCreator(mushroomList, scanner);
+    MushroomSearcher mushroomSearcher = new MushroomSearcher(scanner, mushroomList);
+    MenuLogic menuLogic = new MenuLogic(scanner, mushroomCreator, mushroomSearcher);
 
 
     menuLogic.runMenu();

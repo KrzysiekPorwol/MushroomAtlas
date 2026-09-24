@@ -1,5 +1,6 @@
 package model;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
@@ -17,19 +18,21 @@ public class MushroomList {
     return new TreeSet<>(mushrooms);
   }
 
-  public Set<Mushroom> getEdibilityMushrooms(Edibility edibility) {
-    return mushrooms.stream()
-          .filter(mushroom -> mushroom.getEdibility() == edibility)
-          .collect(Collectors.toCollection(() -> new TreeSet<>()));
-  }
-
-  public Set<Mushroom> getHymenophoreMushrooms(Hymenophore hymenophore) {
-    return mushrooms.stream()
+  public List<Mushroom> findByHymenophore(Hymenophore hymenophore) {
+    return getAllMushrooms().stream()
           .filter(mushroom -> mushroom.getHymenophore() == hymenophore)
-          .collect(Collectors.toCollection(() -> new TreeSet<>()));
+          .collect(Collectors.toList());
   }
 
-  public Optional<Mushroom> getOneMushroom(String name) {
+  public List<Mushroom> findByEdibility(Edibility edibility) {
+    return getAllMushrooms().stream()
+          .filter(mushroom -> mushroom.getEdibility() == edibility)
+          .collect(Collectors.toList());
+  }
+
+  public Optional<Mushroom> findOneMushroom(String name) {
     return mushrooms.stream().filter(mushroom -> mushroom.getName().equals(name)).findFirst();
   }
+
+
 }
