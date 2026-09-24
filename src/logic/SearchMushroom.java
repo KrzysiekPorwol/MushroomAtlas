@@ -17,7 +17,7 @@ public class SearchMushroom {
   }
 
 
-  public void showOneMushroom() {
+  public void printOneMushroom() {
     boolean nameIsCorrect = false;
     do {
       System.out.println("Podaj nazwę grzyba którego szukasz: ");
@@ -35,7 +35,7 @@ public class SearchMushroom {
   }
 
 
-  public void showAllMushrooms() {
+  public void printAllMushrooms() {
     Set<Mushroom> allMushrooms = mushroomList.getAllMushrooms();
     System.out.println("Nazwa | Opis grzyba | rodzaj hymenophoru | jadalność\n");
     for (Mushroom m : allMushrooms) {
@@ -43,15 +43,4 @@ public class SearchMushroom {
     }
   }
 }
-
-
-//  public void showOneMushroom() {
-//    Map<String, Mushroom> mapMushroom = new HashMap<>();
-//    for (Mushroom m : mushroomList.getAllMushrooms()) {
-//      mapMushroom.put(m.getName(), m);
-//    }
-//    System.out.println("Podaj nazwę grzyba którego szukasz: ");
-//    String mushroomName = scanner.nextLine();
-//    System.out.println(mapMushroom.get(mushroomName));
-//  }
 

@@ -1,7 +1,6 @@
 package logic;
 
 import model.Menu;
-import model.MushroomList;
 
 import java.util.InputMismatchException;
 import java.util.Optional;
@@ -23,8 +22,8 @@ public class MenuLogic {
 
 
     switch (choice) {
-      case SEARCH_MUSHROOM -> searchMushroom.showOneMushroom();
-      case SHOW_ALL_MUSHROOMS -> searchMushroom.showAllMushrooms();
+      case SEARCH_MUSHROOM -> searchMushroom.printOneMushroom();
+      case SHOW_ALL_MUSHROOMS -> searchMushroom.printAllMushrooms();
       case FILTER_MUSHROOMS -> System.out.println("Kiedys bedziesz mogl filtrowac grzyby");
       case ADD_MUSHROOM -> makeMushroom.makeMushroom();
       case EXIT -> System.out.println("Do zobaczenia!");
