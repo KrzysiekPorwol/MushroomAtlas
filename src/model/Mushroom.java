@@ -41,10 +41,6 @@ public class Mushroom implements Comparable<Mushroom>, Serializable {
     return name;
   }
 
-  public String getDescription() {
-    return description;
-  }
-
   public Edibility getEdibility() {
     return edibility;
   }
