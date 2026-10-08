@@ -13,11 +13,13 @@ public class MenuLogic {
   private final Scanner scanner;
   private final MushroomCreator mushroomCreator;
   private final MushroomSearcher mushroomSearcher;
+  private final MushroomRemove mushroomRemove;
 
-  public MenuLogic(Scanner scanner, MushroomCreator mushroomCreator, MushroomSearcher mushroomSearcher) {
+  public MenuLogic(Scanner scanner, MushroomCreator mushroomCreator, MushroomSearcher mushroomSearcher, MushroomRemove mushroomRemove) {
     this.scanner = scanner;
     this.mushroomCreator = mushroomCreator;
     this.mushroomSearcher = mushroomSearcher;
+    this.mushroomRemove = mushroomRemove;
   }
 
   private void navigateMenu(Menu choice) {
@@ -28,6 +30,7 @@ public class MenuLogic {
       case SHOW_ALL_MUSHROOMS -> mushroomSearcher.printAllMushrooms();
       case FILTER_MUSHROOMS -> mushroomSearcher.filtrAllMushrooms();
       case ADD_MUSHROOM -> mushroomCreator.makeMushroom();
+      case REMOVE_MUSHROOM -> mushroomRemove.removeMushroom();
       case EXIT -> System.out.println("Do zobaczenia!");
     }
   }

@@ -2,6 +2,7 @@ import exception.InvalidFileReadException;
 import exception.InvalidFileSaveException;
 import logic.MenuLogic;
 import logic.MushroomCreator;
+import logic.MushroomRemove;
 import logic.MushroomSearcher;
 import logic.file.FileCreator;
 import model.MushroomList;
@@ -23,8 +24,9 @@ public class App {
       Scanner scanner = new Scanner(System.in);
 
       MushroomCreator mushroomCreator = new MushroomCreator(mushroomList, scanner);
+      MushroomRemove mushroomRemove = new MushroomRemove(mushroomList, scanner);
       MushroomSearcher mushroomSearcher = new MushroomSearcher(scanner, mushroomList);
-      MenuLogic menuLogic = new MenuLogic(scanner, mushroomCreator, mushroomSearcher);
+      MenuLogic menuLogic = new MenuLogic(scanner, mushroomCreator, mushroomSearcher, mushroomRemove);
 
       menuLogic.runMenu();
 

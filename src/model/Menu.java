@@ -6,7 +6,8 @@ public enum Menu {
   SEARCH_MUSHROOM(1, "Poszukaj konkretnego grzyba - wpisz "),
   SHOW_ALL_MUSHROOMS(2, "Pokaż wszystkie grzyby alfabetycznie - wpisz "),
   FILTER_MUSHROOMS(3, "Wyfiltruj konkretne grzyby - wpisz "),
-  ADD_MUSHROOM(4, "Dodaj nowego grzyba do atlasu = wpisz "),
+  ADD_MUSHROOM(4, "Dodaj nowego grzyba do atlasu - wpisz "),
+  REMOVE_MUSHROOM(5, "Usun grzyba z atlasu - wpisz "),
   EXIT(0, "Wyjdz z aplikacji - wpisz ");
 
   private final int number;

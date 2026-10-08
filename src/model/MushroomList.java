@@ -18,6 +18,16 @@ public class MushroomList {
     mushrooms.add(mushroom);
   }
 
+  public boolean removeMushroom(String name) {
+    for (Mushroom m : mushrooms) {
+      if (name.equals(m.getName())) {
+        mushrooms.remove(m);
+        return true;
+      }
+    }
+    return false;
+  }
+
   public Set<Mushroom> getAllMushrooms() {
     return new TreeSet<>(mushrooms);
   }
