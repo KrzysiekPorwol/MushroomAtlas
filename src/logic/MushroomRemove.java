@@ -1,7 +1,5 @@
 package logic;
 
-import model.Edibility;
-import model.Hymenophore;
 import model.Mushroom;
 import model.MushroomList;
 
