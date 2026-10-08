@@ -25,7 +25,6 @@ public class MushroomRemove {
       System.out.println("Udało się usunąć grzyba " + name + " z atlasu!");
     } else {
       System.out.println("Nie znaleziono grzyba " + name + " w atlasie!");
-
     }
   }
 
@@ -35,7 +34,7 @@ public class MushroomRemove {
     String userText;
     do {
       System.out.println(text);
-      userText = scanner.nextLine().trim();
+      userText = scanner.nextLine().trim().toLowerCase();
       if (userText.isBlank()) {
         System.out.println("Wprowadzony tekst nie może być pusty");
         continue;
