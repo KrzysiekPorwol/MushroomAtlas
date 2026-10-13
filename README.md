@@ -8,7 +8,7 @@ MushroomAtlas is a project I build while going through the JavaStart course (Jav
 
 You start the app, see a menu, and can look up a mushroom by name, browse the whole atlas, filter it, or add and remove entries. Everything you add is saved to a file and loaded again on the next start.
 
-All code in this repository was written by me. My design notes and a list of course topics already used in the code are in `src/docs/`.
+My design notes and a list of course topics already used in the code are in `src/docs/`.
 
 ## App preview
 
@@ -47,20 +47,6 @@ Date and time API (`LocalDateTime`, `DateTimeFormatter`).
 
 Clone the repo, open it in IntelliJ IDEA and run `App.java` (Java 17 or newer).
 
-Or from the terminal:
-
-```
-javac -d out $(find src -name "*.java")
-java -cp out App
-```
-
-## What's next
-
-- More information about each mushroom — season and forest type
-- Searching by a fragment of the name
-- Marking mushrooms you have already found
-- Refactoring repeated code with my own interface and generic methods
-
 ---
 
 # MushroomAtlas (PL)
@@ -73,7 +59,7 @@ MushroomAtlas to projekt, który piszę w trakcie kursu JavaStart (Java podstawy
 
 Uruchamiasz aplikację, widzisz menu i możesz wyszukać grzyba po nazwie, przejrzeć cały atlas, przefiltrować go albo dodawać i usuwać grzyby. Wszystko, co dodasz, zapisuje się do pliku i wczytuje przy kolejnym uruchomieniu.
 
-Cały kod w tym repozytorium napisałem samodzielnie. Moje notatki projektowe i lista zagadnień z kursu wykorzystanych w kodzie są w `src/docs/`.
+Moje notatki projektowe i lista zagadnień z kursu wykorzystanych w kodzie są w `src/docs/`.
 
 ## Prezentacja aplikacji
 
@@ -111,17 +97,3 @@ Daty i czas (`LocalDateTime`, `DateTimeFormatter`).
 ## Uruchomienie
 
 Sklonuj repo, otwórz w IntelliJ IDEA i uruchom `App.java` (Java 17 lub nowsza).
-
-Albo z terminala:
-
-```
-javac -d out $(find src -name "*.java")
-java -cp out App
-```
-
-## Co dalej
-
-- Więcej informacji o grzybie — pora roku i typ lasu
-- Wyszukiwanie po fragmencie nazwy
-- Zaznaczanie grzybów, które już znalazłem
-- Refaktoryzacja powtarzającego się kodu z użyciem własnego interfejsu i metod generycznych
