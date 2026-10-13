@@ -10,7 +10,7 @@ import java.util.TreeSet;
 
 public class FileCreator {
 
-  String fileName = "/Users/krzysztofporwol/javastart/Atlas_Grzybow/mushrooms.txt";
+  String fileName = "mushrooms.txt";
   File file = new File(fileName);
 
   public void saveMushroom(Set<Mushroom> mushrooms) throws InvalidFileSaveException {
