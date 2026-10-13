@@ -41,7 +41,7 @@ public class MushroomCreator {
     String userText;
     do {
       System.out.println(text);
-      userText = scanner.nextLine().trim();
+      userText = scanner.nextLine().trim().toLowerCase();
       if (userText.isBlank()) {
         System.out.println("Wprowadzony tekst nie może być pusty");
         continue;

@@ -19,8 +19,8 @@ public class Mushroom implements Comparable<Mushroom>, Serializable {
 
   public Mushroom(String name, String description, Edibility edibility, Hymenophore hymenophore) {
 
-    String trimmedName = Objects.requireNonNull(name, "Nazwa nie może być nullem").trim();
-    String trimmedDescription = Objects.requireNonNull(description, "Opis nie może być nullem").trim();
+    String trimmedName = Objects.requireNonNull(name, "Nazwa nie może być nullem").trim().toLowerCase();
+    String trimmedDescription = Objects.requireNonNull(description, "Opis nie może być nullem").trim().toLowerCase();
     Edibility notNullEdibility = Objects.requireNonNull(edibility, "Jadalność nie może być nullem");
     Hymenophore notNullHymenophore = Objects.requireNonNull(hymenophore, "Hymenophore nie może być nullem");
 
@@ -39,10 +39,6 @@ public class Mushroom implements Comparable<Mushroom>, Serializable {
 
   public String getName() {
     return name;
-  }
-
-  public String getDescription() {
-    return description;
   }
 
   public Edibility getEdibility() {
