@@ -1,24 +1,7 @@
-Na start wystarczy kilka funkcji:
-
-użytkownik wpisuje nazwę grzyba → dostaje opis, jadalność, porę roku, typ lasu
-może wyświetlić listę wszystkich grzybów
-może filtrować (np. "pokaż tylko jadalne" albo "pokaż grzyby z lasu liściastego")
-może wyszukiwać po fragmencie nazwy
-
-A od strony kodu to ładnie ćwiczy rzeczy z kursu:
-
-Enum — jadalność (JADALNY, NIEJADALNY, TRUJĄCY), typ lasu, pora roku
-Klasa Grzyb z polami i metodami
-Kolekcje — lista grzybów, filtrowanie, wyszukiwanie
-Interfejs — np. Searchable albo Filterable
-Wyjątki — grzyb nie znaleziony, błędne dane wejściowe
-Optional — szukasz grzyba, może go nie być
-
 Zagadnienia przerobione w kursie (JavaStart — Java podstawy, część 1)
-====================================================================
 
-Z tych zagadnień buduję aplikację. To jest mój zakres materiału: w kodzie stosuję to,
-co tu jest, a jeśli sięgam po coś spoza listy — robię to świadomie i najpierw to doczytuję.
+
+Z tych zagadnień buduję aplikację.
 
 Podstawy i programowanie obiektowe:
 - Zmienne
@@ -74,8 +57,7 @@ Kolekcje i programowanie funkcyjne:
 - String Templates
 - Podsumowanie części 1
 
-Stan wykorzystania zagadnień w kodzie (2026-09-24, branch feature/save-and-read-files)
-======================================================================================
+Stan wykorzystania zagadnień w kodzie
 
 Legenda: [x] użyte sensownie, [~] użyte częściowo / pośrednio, [ ] jeszcze nieużyte.
 
@@ -142,28 +124,7 @@ Kolekcje i programowanie funkcyjne:
 - [ ] Wyrażenia regularne
 - [ ] String Templates — konkatenacja przez +, bez STR."..."
 
-Użyte w kodzie, a spoza listy (warto doczytać, skoro już są):
+Użyte w kodzie, a spoza listy:
 - Adnotacje — @Override, @Serial, @SuppressWarnings("unchecked"): co robią i kiedy kompilator je sprawdza
 - var (local variable type inference) — w try-with-resources w FileCreator
 - Serializacja obiektów (Serializable, serialVersionUID) — jeśli nie była częścią lekcji o plikach
-
-Gdzie te braki mogłyby się naturalnie pojawić (kierunek, nie gotowe rozwiązanie):
-- MushroomSearcher.filtrAllMushrooms — siedem niemal identycznych gałęzi case; naturalne miejsce na
-  wydzielenie metody, wykorzystanie fromNumber zamiast ręcznego mapowania cyfry na stałą enuma,
-  a dalej Comparator (sortowanie wyników) i Mapy (np. grupowanie po Edibility/Hymenophore).
-- Referencje do metod — MushroomList i MushroomSearcher używają lambd, część z nich kwalifikuje się
-  do zamiany na referencję do metody (np. wypisywanie elementów).
-- Typy generyczne (własne) + interfejs — opisane w TODO niżej.
-- Rekordy — np. prosty DTO do wyników filtrowania albo statystyk, gdy dojdzie taka funkcjonalność.
-- Wyrażenia regularne — walidacja nazwy grzyba (np. tylko litery i spacje).
-
-TODO na przyszłość
-===================
-
-- Ujednolicić getEdibility() i getHymenophore() w MushroomCreator — obie metody są
-  strukturalnie identyczne (różnią się typem, tekstem pytania i wywoływaną metodą
-  fromNumber). Do zrobienia: wspólny interfejs (np. z metodą getNumber()) implementowany
-  przez Edibility i Hymenophore, potem generyczna metoda z bounded type parameter
-  (<T extends ...>) zastępująca obie. Dotyka: nowy interfejs + zmiana w obu enumach +
-  zmiana w MushroomCreator. Wymaga: interfejsy, typy generyczne (oba zagadnienia już
-  przerobione, ale jeszcze nie połączone w kodzie).
