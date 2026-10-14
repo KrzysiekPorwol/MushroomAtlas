@@ -1,7 +1,7 @@
-package logic;
+package io.github.krzysiekporwol.mushroomatlas.logic;
 
-import model.Mushroom;
-import model.MushroomList;
+import io.github.krzysiekporwol.mushroomatlas.model.Mushroom;
+import io.github.krzysiekporwol.mushroomatlas.model.MushroomList;
 
 import java.util.Scanner;
 

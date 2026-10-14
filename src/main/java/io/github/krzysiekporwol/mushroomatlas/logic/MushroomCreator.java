@@ -1,9 +1,9 @@
-package logic;
+package io.github.krzysiekporwol.mushroomatlas.logic;
 
-import model.Edibility;
-import model.Hymenophore;
-import model.Mushroom;
-import model.MushroomList;
+import io.github.krzysiekporwol.mushroomatlas.model.Edibility;
+import io.github.krzysiekporwol.mushroomatlas.model.Hymenophore;
+import io.github.krzysiekporwol.mushroomatlas.model.Mushroom;
+import io.github.krzysiekporwol.mushroomatlas.model.MushroomList;
 
 import java.util.InputMismatchException;
 import java.util.Optional;

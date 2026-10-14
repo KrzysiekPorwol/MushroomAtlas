@@ -1,8 +1,8 @@
-package logic.file;
+package io.github.krzysiekporwol.mushroomatlas.logic.file;
 
-import exception.InvalidFileReadException;
-import exception.InvalidFileSaveException;
-import model.Mushroom;
+import io.github.krzysiekporwol.mushroomatlas.exception.InvalidFileReadException;
+import io.github.krzysiekporwol.mushroomatlas.exception.InvalidFileSaveException;
+import io.github.krzysiekporwol.mushroomatlas.model.Mushroom;
 
 import java.io.*;
 import java.util.Set;

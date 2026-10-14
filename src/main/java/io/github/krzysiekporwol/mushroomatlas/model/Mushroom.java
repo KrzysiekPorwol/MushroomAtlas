@@ -1,6 +1,6 @@
-package model;
+package io.github.krzysiekporwol.mushroomatlas.model;
 
-import exception.InvalidMushroomDataException;
+import io.github.krzysiekporwol.mushroomatlas.exception.InvalidMushroomDataException;
 
 import java.io.Serial;
 import java.io.Serializable;

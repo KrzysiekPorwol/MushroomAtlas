@@ -1,6 +1,5 @@
-package model;
+package io.github.krzysiekporwol.mushroomatlas.model;
 
-import java.io.Serializable;
 import java.util.Optional;
 
 // hymenofor

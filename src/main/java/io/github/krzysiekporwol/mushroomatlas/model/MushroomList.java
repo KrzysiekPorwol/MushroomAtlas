@@ -1,4 +1,4 @@
-package model;
+package io.github.krzysiekporwol.mushroomatlas.model;
 
 import java.util.List;
 import java.util.Optional;

@@ -8,7 +8,7 @@ MushroomAtlas is a project I build while going through the JavaStart course (Jav
 
 You start the app, see a menu, and can look up a mushroom by name, browse the whole atlas, filter it, or add and remove entries. Everything you add is saved to a file and loaded again on the next start.
 
-My design notes and a list of course topics already used in the code are in `src/docs/`.
+My design notes and a list of course topics already used in the code are in `docs/`.
 
 ## App preview
 
@@ -36,7 +36,7 @@ My design notes and a list of course topics already used in the code are in `src
 
 ## Tech
 
-Java,
+Java 17, Maven,
 Collections (`TreeSet`, `List`) and Streams,
 Enums with static factory methods returning `Optional`,
 Custom checked and unchecked exceptions,
@@ -45,7 +45,18 @@ Date and time API (`LocalDateTime`, `DateTimeFormatter`).
 
 ## How to run
 
-Clone the repo, open it in IntelliJ IDEA and run `App.java` (Java 17 or newer).
+You need Java 17 or newer. Maven doesn't have to be installed — the repo includes the Maven Wrapper (`mvnw`), which downloads the right Maven version on first use.
+
+```bash
+git clone https://github.com/KrzysiekPorwol/MushroomAtlas.git
+cd MushroomAtlas
+./mvnw compile
+java -cp target/classes io.github.krzysiekporwol.mushroomatlas.App
+```
+
+On Windows use `mvnw.cmd compile` instead of `./mvnw compile`.
+
+You can also open the project in IntelliJ IDEA (it's recognized as a Maven project) and run the `App` class.
 
 ---
 
@@ -59,7 +70,7 @@ MushroomAtlas to projekt, który piszę w trakcie kursu JavaStart (Java podstawy
 
 Uruchamiasz aplikację, widzisz menu i możesz wyszukać grzyba po nazwie, przejrzeć cały atlas, przefiltrować go albo dodawać i usuwać grzyby. Wszystko, co dodasz, zapisuje się do pliku i wczytuje przy kolejnym uruchomieniu.
 
-Moje notatki projektowe i lista zagadnień z kursu wykorzystanych w kodzie są w `src/docs/`.
+Moje notatki projektowe i lista zagadnień z kursu wykorzystanych w kodzie są w `docs/`.
 
 ## Prezentacja aplikacji
 
@@ -87,7 +98,7 @@ Moje notatki projektowe i lista zagadnień z kursu wykorzystanych w kodzie są w
 
 ## Technologie
 
-Java,
+Java 17, Maven,
 Kolekcje (`TreeSet`, `List`) i strumienie,
 Enumy ze statycznymi metodami fabrykującymi zwracającymi `Optional`,
 Własne wyjątki checked i unchecked,
@@ -96,4 +107,15 @@ Daty i czas (`LocalDateTime`, `DateTimeFormatter`).
 
 ## Uruchomienie
 
-Sklonuj repo, otwórz w IntelliJ IDEA i uruchom `App.java` (Java 17 lub nowsza).
+Potrzebujesz Javy 17 lub nowszej. Mavena nie trzeba instalować — repo zawiera Maven Wrapper (`mvnw`), który przy pierwszym uruchomieniu sam pobiera odpowiednią wersję Mavena.
+
+```bash
+git clone https://github.com/KrzysiekPorwol/MushroomAtlas.git
+cd MushroomAtlas
+./mvnw compile
+java -cp target/classes io.github.krzysiekporwol.mushroomatlas.App
+```
+
+Na Windowsie zamiast `./mvnw compile` użyj `mvnw.cmd compile`.
+
+Możesz też otworzyć projekt w IntelliJ IDEA (zostanie rozpoznany jako projekt Mavena) i uruchomić klasę `App`.
