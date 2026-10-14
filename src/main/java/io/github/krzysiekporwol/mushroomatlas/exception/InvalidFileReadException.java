@@ -1,4 +1,4 @@
-package exception;
+package io.github.krzysiekporwol.mushroomatlas.exception;
 
 public class InvalidFileReadException extends Exception {
   public InvalidFileReadException(String message) {

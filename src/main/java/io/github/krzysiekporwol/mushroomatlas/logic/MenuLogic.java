@@ -1,6 +1,6 @@
-package logic;
+package io.github.krzysiekporwol.mushroomatlas.logic;
 
-import model.Menu;
+import io.github.krzysiekporwol.mushroomatlas.model.Menu;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

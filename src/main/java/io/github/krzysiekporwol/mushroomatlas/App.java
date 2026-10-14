@@ -1,11 +1,13 @@
-import exception.InvalidFileReadException;
-import exception.InvalidFileSaveException;
-import logic.MenuLogic;
-import logic.MushroomCreator;
-import logic.MushroomRemove;
-import logic.MushroomSearcher;
-import logic.file.FileCreator;
-import model.MushroomList;
+package io.github.krzysiekporwol.mushroomatlas;
+
+import io.github.krzysiekporwol.mushroomatlas.exception.InvalidFileReadException;
+import io.github.krzysiekporwol.mushroomatlas.exception.InvalidFileSaveException;
+import io.github.krzysiekporwol.mushroomatlas.logic.MenuLogic;
+import io.github.krzysiekporwol.mushroomatlas.logic.MushroomCreator;
+import io.github.krzysiekporwol.mushroomatlas.logic.MushroomRemove;
+import io.github.krzysiekporwol.mushroomatlas.logic.MushroomSearcher;
+import io.github.krzysiekporwol.mushroomatlas.logic.file.FileCreator;
+import io.github.krzysiekporwol.mushroomatlas.model.MushroomList;
 
 import java.util.Scanner;
 
