@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class App {
 
-  static void main() {
+  public static void main(String[] args) {
 
     System.out.println("Witaj w aplikacji atlas grzybów!");
     System.out.println("");
