@@ -6,11 +6,11 @@ Console app in Java — a small mushroom atlas you can search, filter and extend
 
 ## What is this
 
-MushroomAtlas is a project I built while going through the JavaStart course (Java basics, part 1). The idea was simple: a mushroom atlas is a natural fit for the things the course teaches — enums (edibility, hymenophore type), classes with validation, collections, streams, `Optional`, exceptions and file operations.
+MushroomAtlas is a project I built to practice Java basics. The idea was simple: a mushroom atlas is a natural fit for the core language features — enums (edibility, hymenophore type), classes with validation, collections, streams, `Optional`, exceptions and file operations.
 
 You start the app, see a menu, and can look up a mushroom by name, browse the whole atlas, filter it, or add and remove entries. Everything you add is saved to a file and loaded again on the next start.
 
-My design notes and a list of course topics already used in the code are in `docs/`.
+My design notes and a list of Java topics used in the code are in `docs/`.
 
 ## App preview
 
@@ -70,11 +70,11 @@ Konsolowa aplikacja w Javie — mały atlas grzybów, który można przeszukiwa�
 
 ## O co chodzi
 
-MushroomAtlas to projekt, który napisałem w trakcie kursu JavaStart (Java podstawy, część 1). Pomysł był prosty: atlas grzybów naturalnie pasuje do tego, czego uczy kurs — enumy (jadalność, rodzaj hymenoforu), klasy z walidacją, kolekcje, strumienie, `Optional`, wyjątki i operacje na plikach.
+MushroomAtlas to projekt, który napisałem, żeby przećwiczyć podstawy Javy. Pomysł był prosty: atlas grzybów naturalnie pasuje do podstawowych elementów języka — enumy (jadalność, rodzaj hymenoforu), klasy z walidacją, kolekcje, strumienie, `Optional`, wyjątki i operacje na plikach.
 
 Uruchamiasz aplikację, widzisz menu i możesz wyszukać grzyba po nazwie, przejrzeć cały atlas, przefiltrować go albo dodawać i usuwać grzyby. Wszystko, co dodasz, zapisuje się do pliku i wczytuje przy kolejnym uruchomieniu.
 
-Moje notatki projektowe i lista zagadnień z kursu wykorzystanych w kodzie są w `docs/`.
+Moje notatki projektowe i lista zagadnień z Javy wykorzystanych w kodzie są w `docs/`.
 
 ## Prezentacja aplikacji
 
