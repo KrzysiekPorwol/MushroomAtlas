@@ -2,9 +2,11 @@
 
 Console app in Java — a small mushroom atlas you can search, filter and extend.
 
+**Status:** completed — a learning project for Java basics. Final release: [v1.1.0](https://github.com/KrzysiekPorwol/MushroomAtlas/releases/tag/v1.1.0).
+
 ## What is this
 
-MushroomAtlas is a project I build while going through the JavaStart course (Java basics, part 1). The idea was simple: a mushroom atlas is a natural fit for the things the course teaches — enums (edibility, hymenophore type), classes with validation, collections, streams, `Optional`, exceptions and file operations.
+MushroomAtlas is a project I built while going through the JavaStart course (Java basics, part 1). The idea was simple: a mushroom atlas is a natural fit for the things the course teaches — enums (edibility, hymenophore type), classes with validation, collections, streams, `Optional`, exceptions and file operations.
 
 You start the app, see a menu, and can look up a mushroom by name, browse the whole atlas, filter it, or add and remove entries. Everything you add is saved to a file and loaded again on the next start.
 
@@ -64,9 +66,11 @@ You can also open the project in IntelliJ IDEA (it's recognized as a Maven proje
 
 Konsolowa aplikacja w Javie — mały atlas grzybów, który można przeszukiwać, filtrować i rozbudowywać.
 
+**Status:** ukończony — projekt do nauki podstaw Javy. Ostatnie wydanie: [v1.1.0](https://github.com/KrzysiekPorwol/MushroomAtlas/releases/tag/v1.1.0).
+
 ## O co chodzi
 
-MushroomAtlas to projekt, który piszę w trakcie kursu JavaStart (Java podstawy, część 1). Pomysł był prosty: atlas grzybów naturalnie pasuje do tego, czego uczy kurs — enumy (jadalność, rodzaj hymenoforu), klasy z walidacją, kolekcje, strumienie, `Optional`, wyjątki i operacje na plikach.
+MushroomAtlas to projekt, który napisałem w trakcie kursu JavaStart (Java podstawy, część 1). Pomysł był prosty: atlas grzybów naturalnie pasuje do tego, czego uczy kurs — enumy (jadalność, rodzaj hymenoforu), klasy z walidacją, kolekcje, strumienie, `Optional`, wyjątki i operacje na plikach.
 
 Uruchamiasz aplikację, widzisz menu i możesz wyszukać grzyba po nazwie, przejrzeć cały atlas, przefiltrować go albo dodawać i usuwać grzyby. Wszystko, co dodasz, zapisuje się do pliku i wczytuje przy kolejnym uruchomieniu.
 
