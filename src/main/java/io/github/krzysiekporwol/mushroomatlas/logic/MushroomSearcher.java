@@ -3,7 +3,7 @@ package io.github.krzysiekporwol.mushroomatlas.logic;
 import io.github.krzysiekporwol.mushroomatlas.model.Edibility;
 import io.github.krzysiekporwol.mushroomatlas.model.Hymenophore;
 import io.github.krzysiekporwol.mushroomatlas.model.Mushroom;
-import io.github.krzysiekporwol.mushroomatlas.model.MushroomList;
+import io.github.krzysiekporwol.mushroomatlas.repository.MushroomRepository;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -13,11 +13,11 @@ import java.util.Set;
 public class MushroomSearcher {
 
   private final Scanner scanner;
-  private final MushroomList mushroomList;
+  private final MushroomRepository mushroomRepository;
 
-  public MushroomSearcher(Scanner scanner, MushroomList mushroomList) {
+  public MushroomSearcher(Scanner scanner, MushroomRepository mushroomRepository) {
     this.scanner = scanner;
-    this.mushroomList = mushroomList;
+    this.mushroomRepository = mushroomRepository;
   }
 
   public void printOneMushroom() {
@@ -28,7 +28,7 @@ public class MushroomSearcher {
       if (mushroomName.length() < Mushroom.MIN_LENGTH) {
         System.out.println("\n\nNazwa musi mieć conajmniej 3 znaki\n\n");
       } else {
-        mushroomList.findOneMushroom(mushroomName).ifPresentOrElse(
+        mushroomRepository.findByName(mushroomName).ifPresentOrElse(
               mushroom -> System.out.println("\n\n" + mushroom + "\n\n"),
               () -> System.out.println("\n\nNie znaleziono grzyba\n\n"));
         nameIsCorrect = true;
@@ -37,7 +37,7 @@ public class MushroomSearcher {
   }
 
   public void printAllMushrooms() {
-    Set<Mushroom> allMushrooms = mushroomList.getAllMushrooms();
+    Set<Mushroom> allMushrooms = mushroomRepository.getAll();
     System.out.println("Nazwa | Opis grzyba | rodzaj hymenophoru | jadalność\n");
     for (Mushroom m : allMushrooms) {
       System.out.println(m.toString() + "\n");
@@ -58,7 +58,7 @@ public class MushroomSearcher {
         scanner.nextLine();
         switch (userChosen) {
           case 1 -> {
-            List<Mushroom> mushroomsByEdibility = mushroomList.findByEdibility(Edibility.EDIBLE);
+            List<Mushroom> mushroomsByEdibility = mushroomRepository.findByEdibility(Edibility.EDIBLE);
             System.out.println("Grzyby jadalne:");
             if (mushroomsByEdibility.isEmpty()) {
               System.out.println("Brak tego typu grzyba w atlasie!");
@@ -69,7 +69,7 @@ public class MushroomSearcher {
             }
           }
           case 2 -> {
-            List<Mushroom> mushroomsByEdibility = mushroomList.findByEdibility(Edibility.INEDIBLE);
+            List<Mushroom> mushroomsByEdibility = mushroomRepository.findByEdibility(Edibility.INEDIBLE);
             System.out.println("Grzyby niejadalne:");
             if (mushroomsByEdibility.isEmpty()) {
               System.out.println("Brak tego typu grzyba w atlasie!");
@@ -80,7 +80,7 @@ public class MushroomSearcher {
             }
           }
           case 3 -> {
-            List<Mushroom> mushroomsByEdibility = mushroomList.findByEdibility(Edibility.POISONOUS);
+            List<Mushroom> mushroomsByEdibility = mushroomRepository.findByEdibility(Edibility.POISONOUS);
             System.out.println("Grzyby trujące:");
             if (mushroomsByEdibility.isEmpty()) {
               System.out.println("Brak tego typu grzyba w atlasie!");
@@ -101,7 +101,7 @@ public class MushroomSearcher {
         scanner.nextLine();
         switch (userChosen) {
           case 1 -> {
-            List<Mushroom> mushroomsByHymenophore = mushroomList.findByHymenophore(Hymenophore.POROID);
+            List<Mushroom> mushroomsByHymenophore = mushroomRepository.findByHymenophore(Hymenophore.POROID);
             System.out.println("Hymenofor rurkowy: ");
             if (mushroomsByHymenophore.isEmpty()) {
               System.out.println("Brak tego typu grzyba w atlasie!");
@@ -112,7 +112,7 @@ public class MushroomSearcher {
             }
           }
           case 2 -> {
-            List<Mushroom> mushroomsByHymenophore = mushroomList.findByHymenophore(Hymenophore.GILLED);
+            List<Mushroom> mushroomsByHymenophore = mushroomRepository.findByHymenophore(Hymenophore.GILLED);
             System.out.println("Hymenofor blaszkowy: ");
             if (mushroomsByHymenophore.isEmpty()) {
               System.out.println("Brak tego typu grzyba w atlasie!");
@@ -123,7 +123,7 @@ public class MushroomSearcher {
             }
           }
           case 3 -> {
-            List<Mushroom> mushroomsByHymenophore = mushroomList.findByHymenophore(Hymenophore.TOOTHED);
+            List<Mushroom> mushroomsByHymenophore = mushroomRepository.findByHymenophore(Hymenophore.TOOTHED);
             System.out.println("Hymenofor kolczasty: ");
             if (mushroomsByHymenophore.isEmpty()) {
               System.out.println("Brak tego typu grzyba w atlasie!");
@@ -134,7 +134,7 @@ public class MushroomSearcher {
             }
           }
           case 4 -> {
-            List<Mushroom> mushroomsByHymenophore = mushroomList.findByHymenophore(Hymenophore.GASTEROID);
+            List<Mushroom> mushroomsByHymenophore = mushroomRepository.findByHymenophore(Hymenophore.GASTEROID);
             System.out.println("Bez hymenoforu: ");
             if (mushroomsByHymenophore.isEmpty()) {
               System.out.println("Brak tego typu grzyba w atlasie!");

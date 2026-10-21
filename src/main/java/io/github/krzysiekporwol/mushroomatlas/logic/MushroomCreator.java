@@ -3,7 +3,7 @@ package io.github.krzysiekporwol.mushroomatlas.logic;
 import io.github.krzysiekporwol.mushroomatlas.model.Edibility;
 import io.github.krzysiekporwol.mushroomatlas.model.Hymenophore;
 import io.github.krzysiekporwol.mushroomatlas.model.Mushroom;
-import io.github.krzysiekporwol.mushroomatlas.model.MushroomList;
+import io.github.krzysiekporwol.mushroomatlas.repository.MushroomRepository;
 
 import java.util.InputMismatchException;
 import java.util.Optional;
@@ -11,11 +11,11 @@ import java.util.Scanner;
 
 public class MushroomCreator {
 
-  private final MushroomList mushroomList;
+  private final MushroomRepository mushroomRepository;
   private final Scanner scanner;
 
-  public MushroomCreator(MushroomList mushroomList, Scanner scanner) {
-    this.mushroomList = mushroomList;
+  public MushroomCreator(MushroomRepository mushroomRepository, Scanner scanner) {
+    this.mushroomRepository = mushroomRepository;
     this.scanner = scanner;
   }
 
@@ -31,7 +31,7 @@ public class MushroomCreator {
     Hymenophore hymenophore = getHymenophore();
 
     Mushroom mushroom = new Mushroom(name, description, edibility, hymenophore);
-    mushroomList.addMushroom(mushroom);
+    mushroomRepository.add(mushroom);
     System.out.println("Udało się dodać grzyba " + name + " do atlasu!");
 
   }

@@ -1,24 +1,29 @@
 package io.github.krzysiekporwol.mushroomatlas.model;
 
+import io.github.krzysiekporwol.mushroomatlas.repository.MushroomRepository;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-public class MushroomList {
+public class MushroomList implements MushroomRepository {
 
   private final Set<Mushroom> mushrooms;
+
 
   public MushroomList(Set<Mushroom> mushrooms) {
     this.mushrooms = new TreeSet<>(mushrooms);
   }
 
-  public void addMushroom(Mushroom mushroom) {
+  @Override
+  public void add(Mushroom mushroom) {
     mushrooms.add(mushroom);
   }
 
-  public boolean removeMushroom(String name) {
+  @Override
+  public boolean remove(String name) {
     for (Mushroom m : mushrooms) {
       if (name.equals(m.getName())) {
         mushrooms.remove(m);
@@ -28,25 +33,27 @@ public class MushroomList {
     return false;
   }
 
-  public Set<Mushroom> getAllMushrooms() {
+  @Override
+  public Set<Mushroom> getAll() {
     return new TreeSet<>(mushrooms);
   }
 
+  @Override
   public List<Mushroom> findByHymenophore(Hymenophore hymenophore) {
-    return getAllMushrooms().stream()
+    return getAll().stream()
           .filter(mushroom -> mushroom.getHymenophore() == hymenophore)
           .collect(Collectors.toList());
   }
 
+  @Override
   public List<Mushroom> findByEdibility(Edibility edibility) {
-    return getAllMushrooms().stream()
+    return getAll().stream()
           .filter(mushroom -> mushroom.getEdibility() == edibility)
           .collect(Collectors.toList());
   }
 
-  public Optional<Mushroom> findOneMushroom(String name) {
+  @Override
+  public Optional<Mushroom> findByName(String name) {
     return mushrooms.stream().filter(mushroom -> mushroom.getName().equals(name)).findFirst();
   }
-
-
 }

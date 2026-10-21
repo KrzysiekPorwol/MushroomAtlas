@@ -32,7 +32,7 @@ public class App {
 
       menuLogic.runMenu();
 
-      fileCreator.saveMushroom(mushroomList.getAllMushrooms());
+      fileCreator.saveMushroom(mushroomList.getAll());
 
       scanner.close();
     } catch (InvalidFileReadException e) {
