@@ -8,6 +8,7 @@ import io.github.krzysiekporwol.mushroomatlas.logic.MushroomRemove;
 import io.github.krzysiekporwol.mushroomatlas.logic.MushroomSearcher;
 import io.github.krzysiekporwol.mushroomatlas.logic.file.FileCreator;
 import io.github.krzysiekporwol.mushroomatlas.model.MushroomList;
+import io.github.krzysiekporwol.mushroomatlas.repository.JdbcMushroomRepository;
 
 import java.util.Scanner;
 
@@ -21,7 +22,8 @@ public class App {
     FileCreator fileCreator = new FileCreator();
 
     try {
-      MushroomList mushroomList = new MushroomList(fileCreator.readMushroom());
+      JdbcMushroomRepository mushroomList = new JdbcMushroomRepository();
+//      MushroomList mushroomList = new MushroomList(fileCreator.readMushroom());
 
       Scanner scanner = new Scanner(System.in);
 
@@ -35,7 +37,7 @@ public class App {
       fileCreator.saveMushroom(mushroomList.getAll());
 
       scanner.close();
-    } catch (InvalidFileReadException e) {
+//    } catch (InvalidFileReadException e) {
       System.out.println(
             "Nie udało się połączyć z plikiem - sprawdź plik mushrooms.txt"
       );
