@@ -5,7 +5,7 @@ import java.util.Optional;
 public enum Edibility {
   EDIBLE(1, "jadalny"),
   INEDIBLE(2, "niejadalny"),
-  POISONUS(3, "trujący");
+  POISONOUS(3, "trujący");
 
   private final int number;
   private final String description;

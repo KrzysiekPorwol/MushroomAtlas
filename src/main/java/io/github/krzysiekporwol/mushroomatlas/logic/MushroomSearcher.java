@@ -80,7 +80,7 @@ public class MushroomSearcher {
             }
           }
           case 3 -> {
-            List<Mushroom> mushroomsByEdibility = mushroomList.findByEdibility(Edibility.POISONUS);
+            List<Mushroom> mushroomsByEdibility = mushroomList.findByEdibility(Edibility.POISONOUS);
             System.out.println("Grzyby trujące:");
             if (mushroomsByEdibility.isEmpty()) {
               System.out.println("Brak tego typu grzyba w atlasie!");
