@@ -1,17 +1,17 @@
 package io.github.krzysiekporwol.mushroomatlas.logic;
 
 import io.github.krzysiekporwol.mushroomatlas.model.Mushroom;
-import io.github.krzysiekporwol.mushroomatlas.model.MushroomList;
+import io.github.krzysiekporwol.mushroomatlas.repository.MushroomRepository;
 
 import java.util.Scanner;
 
 public class MushroomRemove {
 
-  private final MushroomList mushroomList;
+  private final MushroomRepository mushroomRepository;
   private final Scanner scanner;
 
-  public MushroomRemove(MushroomList mushroomList, Scanner scanner) {
-    this.mushroomList = mushroomList;
+  public MushroomRemove(MushroomRepository mushroomRepository, Scanner scanner) {
+    this.mushroomRepository = mushroomRepository;
     this.scanner = scanner;
   }
 
@@ -20,8 +20,7 @@ public class MushroomRemove {
     String name = readUserText();
 
 
-    if (mushroomList.removeMushroom(name)) {
-      mushroomList.removeMushroom(name);
+    if (mushroomRepository.remove(name)) {
       System.out.println("Udało się usunąć grzyba " + name + " z atlasu!");
     } else {
       System.out.println("Nie znaleziono grzyba " + name + " w atlasie!");

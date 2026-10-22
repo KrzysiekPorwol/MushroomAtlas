@@ -1,13 +1,12 @@
 package io.github.krzysiekporwol.mushroomatlas;
 
-import io.github.krzysiekporwol.mushroomatlas.exception.InvalidFileReadException;
-import io.github.krzysiekporwol.mushroomatlas.exception.InvalidFileSaveException;
+import io.github.krzysiekporwol.mushroomatlas.exception.DatabaseException;
 import io.github.krzysiekporwol.mushroomatlas.logic.MenuLogic;
 import io.github.krzysiekporwol.mushroomatlas.logic.MushroomCreator;
 import io.github.krzysiekporwol.mushroomatlas.logic.MushroomRemove;
 import io.github.krzysiekporwol.mushroomatlas.logic.MushroomSearcher;
-import io.github.krzysiekporwol.mushroomatlas.logic.file.FileCreator;
-import io.github.krzysiekporwol.mushroomatlas.model.MushroomList;
+import io.github.krzysiekporwol.mushroomatlas.repository.JdbcMushroomRepository;
+import io.github.krzysiekporwol.mushroomatlas.repository.MushroomRepository;
 
 import java.util.Scanner;
 
@@ -15,34 +14,23 @@ public class App {
 
   public static void main(String[] args) {
 
-    System.out.println("Witaj w aplikacji atlas grzybów!");
-    System.out.println("");
+    System.out.println("Witaj w aplikacji atlas grzybów!\n");
 
-    FileCreator fileCreator = new FileCreator();
+    MushroomRepository mushroomRepository = new JdbcMushroomRepository();
+
+    Scanner scanner = new Scanner(System.in);
+
+    MushroomCreator mushroomCreator = new MushroomCreator(mushroomRepository, scanner);
+    MushroomRemove mushroomRemove = new MushroomRemove(mushroomRepository, scanner);
+    MushroomSearcher mushroomSearcher = new MushroomSearcher(scanner, mushroomRepository);
+    MenuLogic menuLogic = new MenuLogic(scanner, mushroomCreator, mushroomSearcher, mushroomRemove);
 
     try {
-      MushroomList mushroomList = new MushroomList(fileCreator.readMushroom());
-
-      Scanner scanner = new Scanner(System.in);
-
-      MushroomCreator mushroomCreator = new MushroomCreator(mushroomList, scanner);
-      MushroomRemove mushroomRemove = new MushroomRemove(mushroomList, scanner);
-      MushroomSearcher mushroomSearcher = new MushroomSearcher(scanner, mushroomList);
-      MenuLogic menuLogic = new MenuLogic(scanner, mushroomCreator, mushroomSearcher, mushroomRemove);
-
       menuLogic.runMenu();
-
-      fileCreator.saveMushroom(mushroomList.getAllMushrooms());
-
-      scanner.close();
-    } catch (InvalidFileReadException e) {
-      System.out.println(
-            "Nie udało się połączyć z plikiem - sprawdź plik mushrooms.txt"
-      );
-    } catch (InvalidFileSaveException e) {
-      System.out.println(
-            "Nie udało się połączyć z plikiem - sprawdź plik mushrooms.txt - program nie zapisze nowych grzybów dodanych do atlasu."
-      );
+    } catch (DatabaseException e) {
+      System.out.println(e.getMessage() + "\n" + e.getCause().getMessage());
     }
+
+    scanner.close();
   }
 }
