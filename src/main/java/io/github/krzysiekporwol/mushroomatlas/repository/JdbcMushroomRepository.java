@@ -1,6 +1,7 @@
 package io.github.krzysiekporwol.mushroomatlas.repository;
 
 import io.github.krzysiekporwol.mushroomatlas.database.DatabaseConnection;
+import io.github.krzysiekporwol.mushroomatlas.exception.DatabaseException;
 import io.github.krzysiekporwol.mushroomatlas.exception.MushroomAlreadyExistsException;
 import io.github.krzysiekporwol.mushroomatlas.model.Edibility;
 import io.github.krzysiekporwol.mushroomatlas.model.Hymenophore;
@@ -32,7 +33,7 @@ public class JdbcMushroomRepository implements MushroomRepository {
       if (UNIQUE_VIOLATION.equals(e.getSQLState())) {
         throw new MushroomAlreadyExistsException("Taki grzyb już istnieje w atlasie", e);
       } else {
-        throw new RuntimeException(e);
+        throw new DatabaseException("Nie udało się dodać grzyba", e);
       }
     }
   }
@@ -49,7 +50,7 @@ public class JdbcMushroomRepository implements MushroomRepository {
       statement.setString(1, name);
       return statement.executeUpdate() > 0;
     } catch (SQLException e) {
-      throw new RuntimeException(e);
+      throw new DatabaseException("Nie udało się usunąć grzyba", e);
     }
   }
 
@@ -66,7 +67,7 @@ public class JdbcMushroomRepository implements MushroomRepository {
         mushrooms.add(mapRow(resultSet));
       }
     } catch (SQLException e) {
-      throw new RuntimeException(e);
+      throw new DatabaseException("Nie udało się wczytać grzybów", e);
     }
     return mushrooms;
   }
@@ -90,7 +91,7 @@ public class JdbcMushroomRepository implements MushroomRepository {
       }
       return mushrooms;
     } catch (SQLException e) {
-      throw new RuntimeException(e);
+      throw new DatabaseException("Nie udało się przefiltrować grzybów", e);
     }
   }
 
@@ -113,7 +114,7 @@ public class JdbcMushroomRepository implements MushroomRepository {
       }
       return mushrooms;
     } catch (SQLException e) {
-      throw new RuntimeException(e);
+      throw new DatabaseException("Nie udało się przefiltrować grzybów", e);
     }
   }
 
@@ -137,7 +138,7 @@ public class JdbcMushroomRepository implements MushroomRepository {
         }
       }
     } catch (SQLException e) {
-      throw new RuntimeException(e);
+      throw new DatabaseException("Nie udało się znaleźć grzyba", e);
     }
     return Optional.empty();
   }

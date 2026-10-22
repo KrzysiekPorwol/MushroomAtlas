@@ -1,5 +1,6 @@
 package io.github.krzysiekporwol.mushroomatlas;
 
+import io.github.krzysiekporwol.mushroomatlas.exception.DatabaseException;
 import io.github.krzysiekporwol.mushroomatlas.logic.MenuLogic;
 import io.github.krzysiekporwol.mushroomatlas.logic.MushroomCreator;
 import io.github.krzysiekporwol.mushroomatlas.logic.MushroomRemove;
@@ -12,8 +13,7 @@ public class App {
 
   public static void main(String[] args) {
 
-    System.out.println("Witaj w aplikacji atlas grzybów!");
-    System.out.println("");
+    System.out.println("Witaj w aplikacji atlas grzybów!\n");
 
     JdbcMushroomRepository mushroomList = new JdbcMushroomRepository();
 
@@ -24,7 +24,11 @@ public class App {
     MushroomSearcher mushroomSearcher = new MushroomSearcher(scanner, mushroomList);
     MenuLogic menuLogic = new MenuLogic(scanner, mushroomCreator, mushroomSearcher, mushroomRemove);
 
-    menuLogic.runMenu();
+    try {
+      menuLogic.runMenu();
+    } catch (DatabaseException e) {
+      System.out.println(e.getMessage() + "\n" + e.getCause().getMessage());
+    }
 
     scanner.close();
   }
