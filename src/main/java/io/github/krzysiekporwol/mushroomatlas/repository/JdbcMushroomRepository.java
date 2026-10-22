@@ -1,6 +1,7 @@
 package io.github.krzysiekporwol.mushroomatlas.repository;
 
 import io.github.krzysiekporwol.mushroomatlas.database.DatabaseConnection;
+import io.github.krzysiekporwol.mushroomatlas.exception.MushroomAlreadyExistsException;
 import io.github.krzysiekporwol.mushroomatlas.model.Edibility;
 import io.github.krzysiekporwol.mushroomatlas.model.Hymenophore;
 import io.github.krzysiekporwol.mushroomatlas.model.Mushroom;
@@ -9,6 +10,9 @@ import java.sql.*;
 import java.util.*;
 
 public class JdbcMushroomRepository implements MushroomRepository {
+
+  private static final String UNIQUE_VIOLATION = "23505";
+
   @Override
   public void add(Mushroom mushroom) {
     try (
@@ -25,7 +29,11 @@ public class JdbcMushroomRepository implements MushroomRepository {
 
       statement.executeUpdate();
     } catch (SQLException e) {
-      throw new RuntimeException(e);
+      if (UNIQUE_VIOLATION.equals(e.getSQLState())) {
+        throw new MushroomAlreadyExistsException("Taki grzyb już istnieje w atlasie", e);
+      } else {
+        throw new RuntimeException(e);
+      }
     }
   }
 

@@ -1,5 +1,6 @@
 package io.github.krzysiekporwol.mushroomatlas.logic;
 
+import io.github.krzysiekporwol.mushroomatlas.exception.MushroomAlreadyExistsException;
 import io.github.krzysiekporwol.mushroomatlas.model.Edibility;
 import io.github.krzysiekporwol.mushroomatlas.model.Hymenophore;
 import io.github.krzysiekporwol.mushroomatlas.model.Mushroom;
@@ -31,8 +32,12 @@ public class MushroomCreator {
     Hymenophore hymenophore = getHymenophore();
 
     Mushroom mushroom = new Mushroom(name, description, edibility, hymenophore);
-    mushroomRepository.add(mushroom);
-    System.out.println("Udało się dodać grzyba " + name + " do atlasu!");
+    try {
+      mushroomRepository.add(mushroom);
+      System.out.println("Udało się dodać grzyba " + name + " do atlasu!");
+    } catch (MushroomAlreadyExistsException e) {
+      System.out.println(e.getMessage());
+    }
 
   }
 
