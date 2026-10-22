@@ -45,18 +45,33 @@ Date and time API (`LocalDateTime`, `DateTimeFormatter`).
 
 ## How to run
 
-You need Java 17 or newer. Maven doesn't have to be installed — the repo includes the Maven Wrapper (`mvnw`), which downloads the right Maven version on first use.
+You need Java 17 or newer and PostgreSQL running on `localhost:5432`. Maven doesn't have to be installed — the repo includes the Maven Wrapper (`mvnw`), which downloads the right Maven version on first use.
+
+**1. Set up the database**
+
+Create a database called `mushroom_atlas` and load the schema (tables and dictionary data) from `db/schema.sql`:
 
 ```bash
 git clone https://github.com/KrzysiekPorwol/MushroomAtlas.git
 cd MushroomAtlas
-./mvnw compile
-java -cp target/classes io.github.krzysiekporwol.mushroomatlas.App
+createdb mushroom_atlas
+psql -d mushroom_atlas -f db/schema.sql
 ```
 
-On Windows use `mvnw.cmd compile` instead of `./mvnw compile`.
+You can also do this in a GUI client such as DBeaver: create the database, open `db/schema.sql` in its SQL editor and run it as a script.
 
-You can also open the project in IntelliJ IDEA (it's recognized as a Maven project) and run the `App` class.
+Connection settings (URL, user, password) are in `DatabaseConnection.java` — change the user to your own PostgreSQL user if needed.
+
+**2. Build and run**
+
+```bash
+./mvnw compile
+java -cp "target/classes:$(./mvnw -q dependency:build-classpath -Dmdep.outputFile=/dev/stdout)" io.github.krzysiekporwol.mushroomatlas.App
+```
+
+The second part of the classpath adds the PostgreSQL JDBC driver, which Maven keeps in its local repository.
+
+The easiest way, also on Windows, is to open the project in IntelliJ IDEA (it's recognized as a Maven project) and run the `App` class — IntelliJ adds the driver to the classpath automatically.
 
 ---
 
@@ -107,15 +122,30 @@ Daty i czas (`LocalDateTime`, `DateTimeFormatter`).
 
 ## Uruchomienie
 
-Potrzebujesz Javy 17 lub nowszej. Mavena nie trzeba instalować — repo zawiera Maven Wrapper (`mvnw`), który przy pierwszym uruchomieniu sam pobiera odpowiednią wersję Mavena.
+Potrzebujesz Javy 17 lub nowszej i PostgreSQL działającego na `localhost:5432`. Mavena nie trzeba instalować — repo zawiera Maven Wrapper (`mvnw`), który przy pierwszym uruchomieniu sam pobiera odpowiednią wersję Mavena.
+
+**1. Przygotowanie bazy danych**
+
+Utwórz bazę `mushroom_atlas` i wczytaj do niej schemat (tabele i dane słownikowe) z pliku `db/schema.sql`:
 
 ```bash
 git clone https://github.com/KrzysiekPorwol/MushroomAtlas.git
 cd MushroomAtlas
-./mvnw compile
-java -cp target/classes io.github.krzysiekporwol.mushroomatlas.App
+createdb mushroom_atlas
+psql -d mushroom_atlas -f db/schema.sql
 ```
 
-Na Windowsie zamiast `./mvnw compile` użyj `mvnw.cmd compile`.
+Możesz to też zrobić w kliencie graficznym, np. DBeaverze: utwórz bazę, otwórz `db/schema.sql` w edytorze SQL i uruchom go jako skrypt.
 
-Możesz też otworzyć projekt w IntelliJ IDEA (zostanie rozpoznany jako projekt Mavena) i uruchomić klasę `App`.
+Ustawienia połączenia (URL, użytkownik, hasło) są w `DatabaseConnection.java` — w razie potrzeby zmień użytkownika na swojego użytkownika PostgreSQL.
+
+**2. Kompilacja i uruchomienie**
+
+```bash
+./mvnw compile
+java -cp "target/classes:$(./mvnw -q dependency:build-classpath -Dmdep.outputFile=/dev/stdout)" io.github.krzysiekporwol.mushroomatlas.App
+```
+
+Druga część classpatha dokłada sterownik JDBC PostgreSQL, który Maven trzyma w swoim lokalnym repozytorium.
+
+Najprościej, także na Windowsie, otworzyć projekt w IntelliJ IDEA (zostanie rozpoznany jako projekt Mavena) i uruchomić klasę `App` — IntelliJ sam dołoży sterownik do classpatha.
