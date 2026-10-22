@@ -2,20 +2,15 @@ package io.github.krzysiekporwol.mushroomatlas.model;
 
 import io.github.krzysiekporwol.mushroomatlas.exception.InvalidMushroomDataException;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.Objects;
 
-public class Mushroom implements Comparable<Mushroom>, Serializable {
+public class Mushroom implements Comparable<Mushroom> {
 
   public static final int MIN_LENGTH = 3;
   private final String name;
   private final String description;
   private final Edibility edibility;
   private final Hymenophore hymenophore;
-
-  @Serial
-  private static final long serialVersionUID = 3812017177088226528L;
 
   public Mushroom(String name, String description, Edibility edibility, Hymenophore hymenophore) {
 

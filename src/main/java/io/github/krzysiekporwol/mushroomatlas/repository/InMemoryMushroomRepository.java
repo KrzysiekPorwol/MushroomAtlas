@@ -1,6 +1,8 @@
-package io.github.krzysiekporwol.mushroomatlas.model;
+package io.github.krzysiekporwol.mushroomatlas.repository;
 
-import io.github.krzysiekporwol.mushroomatlas.repository.MushroomRepository;
+import io.github.krzysiekporwol.mushroomatlas.model.Edibility;
+import io.github.krzysiekporwol.mushroomatlas.model.Hymenophore;
+import io.github.krzysiekporwol.mushroomatlas.model.Mushroom;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,12 +10,12 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-public class MushroomList implements MushroomRepository {
+public class InMemoryMushroomRepository implements MushroomRepository {
 
   private final Set<Mushroom> mushrooms;
 
 
-  public MushroomList(Set<Mushroom> mushrooms) {
+  public InMemoryMushroomRepository(Set<Mushroom> mushrooms) {
     this.mushrooms = new TreeSet<>(mushrooms);
   }
 
