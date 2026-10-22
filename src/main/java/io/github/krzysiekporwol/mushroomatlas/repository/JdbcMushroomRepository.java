@@ -5,49 +5,57 @@ import io.github.krzysiekporwol.mushroomatlas.model.Edibility;
 import io.github.krzysiekporwol.mushroomatlas.model.Hymenophore;
 import io.github.krzysiekporwol.mushroomatlas.model.Mushroom;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.TreeSet;
+import java.sql.*;
+import java.util.*;
 
 public class JdbcMushroomRepository implements MushroomRepository {
   @Override
   public void add(Mushroom mushroom) {
+    try (
+        Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement statement = connection.prepareStatement(
+            "INSERT INTO mushroom (name, description, edibility_id, hymenophore_id) " +
+                "VALUES (?, ?, ?, ?)"
+        )
+    ) {
+      statement.setString(1, mushroom.getName());
+      statement.setString(2, mushroom.getDescription());
+      statement.setInt(3, mushroom.getEdibility().getNumber());
+      statement.setInt(4, mushroom.getHymenophore().getNumber());
 
+      statement.executeUpdate();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override
   public boolean remove(String name) {
-    return false;
+    try (
+        Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement statement = connection.prepareStatement(
+            "DELETE FROM mushroom " +
+                "WHERE name = ?"
+        )
+    ) {
+      statement.setString(1, name);
+      return statement.executeUpdate() > 0;
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override
   public Set<Mushroom> getAll() {
     Set<Mushroom> mushrooms = new TreeSet<>();
     try (
-          Connection connection = DatabaseConnection.getConnection();
-          Statement statement = connection.createStatement();
-          ResultSet resultSet = statement.executeQuery("SELECT * FROM mushroom");
+        Connection connection = DatabaseConnection.getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM mushroom");
     ) {
       while (resultSet.next()) {
-        String name = resultSet.getString("name");
-        String description = resultSet.getString("description");
 
-        int edibilityNumber = resultSet.getInt("edibility_id");
-        Optional<Edibility> edibilityOptional = Edibility.fromNumber(edibilityNumber);
-        Edibility edibility = edibilityOptional.orElseThrow(
-              () -> new IllegalStateException("Nieznana wartość edibility w bazie danych!" + edibilityNumber));
-
-        int hymenophoreNumber = resultSet.getInt("hymenophore_id");
-        Optional<Hymenophore> hymenophoreOptional = Hymenophore.fromNumber(hymenophoreNumber);
-        Hymenophore hymenophore = hymenophoreOptional.orElseThrow(
-              () -> new IllegalStateException("Nieznana wartość hymenophore w bazie danych!" + hymenophoreNumber));
-
-        mushrooms.add(new Mushroom(name, description, edibility, hymenophore));
+        mushrooms.add(mapRow(resultSet));
       }
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -57,16 +65,91 @@ public class JdbcMushroomRepository implements MushroomRepository {
 
   @Override
   public List<Mushroom> findByHymenophore(Hymenophore hymenophore) {
-    return List.of();
+    List<Mushroom> mushrooms = new ArrayList<>();
+    try (
+        Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement statement = connection.prepareStatement(
+            "SELECT * FROM mushroom WHERE hymenophore_id = ?"
+        )
+    ) {
+      statement.setInt(1, hymenophore.getNumber());
+      try (
+          ResultSet resultSet = statement.executeQuery();
+      ) {
+        while (resultSet.next()) {
+          mushrooms.add(mapRow(resultSet));
+        }
+      }
+      return mushrooms;
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override
   public List<Mushroom> findByEdibility(Edibility edibility) {
-    return List.of();
+    List<Mushroom> mushrooms = new ArrayList<>();
+    try (
+        Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement statement = connection.prepareStatement(
+            "SELECT * FROM mushroom WHERE edibility_id = ?"
+        )
+    ) {
+      statement.setInt(1, edibility.getNumber());
+      try (
+          ResultSet resultSet = statement.executeQuery();
+      ) {
+        while (resultSet.next()) {
+          mushrooms.add(mapRow(resultSet));
+        }
+      }
+      return mushrooms;
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override
   public Optional<Mushroom> findByName(String name) {
+    try (
+        Connection connection = DatabaseConnection.getConnection();
+        PreparedStatement statement = connection.prepareStatement(
+            "SELECT * FROM mushroom WHERE name = ?"
+        )
+    ) {
+      statement.setString(1, name);
+      try (
+          ResultSet resultSet = statement.executeQuery();
+      ) {
+        if (resultSet.next()) {
+
+          Mushroom mushroom = mapRow(resultSet);
+
+          return Optional.of(mushroom);
+        }
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
     return Optional.empty();
   }
+
+  private static Mushroom mapRow(ResultSet resultSet) throws SQLException {
+    String name = resultSet.getString("name");
+    String description = resultSet.getString("description");
+
+    int edibilityNumber = resultSet.getInt("edibility_id");
+    Optional<Edibility> edibilityOptional = Edibility.fromNumber(edibilityNumber);
+    Edibility edibility = edibilityOptional.orElseThrow(
+        () -> new IllegalStateException("Nieznana wartość edibility w bazie danych!" + edibilityNumber));
+
+    int hymenophoreNumber = resultSet.getInt("hymenophore_id");
+    Optional<Hymenophore> hymenophoreOptional = Hymenophore.fromNumber(hymenophoreNumber);
+    Hymenophore hymenophore = hymenophoreOptional.orElseThrow(
+        () -> new IllegalStateException("Nieznana wartość hymenophore w bazie danych!" + hymenophoreNumber));
+
+    return new Mushroom(name, description, edibility, hymenophore);
+  }
 }
+
+

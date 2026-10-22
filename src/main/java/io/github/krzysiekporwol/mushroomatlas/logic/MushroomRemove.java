@@ -21,7 +21,6 @@ public class MushroomRemove {
 
 
     if (mushroomRepository.remove(name)) {
-      mushroomRepository.remove(name);
       System.out.println("Udało się usunąć grzyba " + name + " z atlasu!");
     } else {
       System.out.println("Nie znaleziono grzyba " + name + " w atlasie!");
